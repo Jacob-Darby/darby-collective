@@ -467,6 +467,104 @@ section:nth-child(odd) { background: var(--white); }
 .res-item h4 { font-size: 0.97rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
 .res-item p { font-size: 0.92rem; color: var(--body); line-height: 1.78; }
 
+/* ─── NAME ORIGIN CALLOUT ───────────────────────── */
+.name-callout {
+  background: rgba(106,172,222,0.08);
+  border: 1px solid rgba(106,172,222,0.22);
+  border-left: 4px solid #6aacde;
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 32px auto 0;
+  max-width: 700px;
+}
+.name-callout h4 { font-family: 'Lora', serif; font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+.name-callout p { font-size: 0.92rem; color: #b0cce0; line-height: 1.78; }
+.name-callout strong { color: #d8eaf5; }
+
+/* ─── CONNECT ───────────────────────────────────── */
+#connect { background: var(--white); }
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 8px;
+}
+.connect-panel {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 26px;
+}
+.connect-panel h3 { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+
+/* Search */
+.name-search-wrap { position: relative; margin-bottom: 16px; }
+.name-search {
+  width: 100%; padding: 12px 16px;
+  font-size: 1rem; font-family: 'Inter', sans-serif;
+  border: 2px solid var(--border); border-radius: 5px;
+  background: var(--white); color: var(--ink);
+  outline: none; transition: border-color 0.18s;
+}
+.name-search:focus { border-color: var(--navy); }
+.name-search::placeholder { color: var(--muted); }
+.search-results { display: grid; gap: 8px; min-height: 48px; }
+.search-hit {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 4px; padding: 12px 14px; cursor: pointer;
+  transition: border-color 0.15s;
+}
+.search-hit:hover { border-color: var(--navy); }
+.search-hit-gen { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-bottom: 3px; }
+.search-hit-name { font-family: 'Lora', serif; font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+.search-hit-meta { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+.search-empty { font-size: 0.9rem; color: var(--muted); padding: 8px 0; }
+
+/* Branch Tree */
+.branch-tree { font-size: 0.88rem; line-height: 1.6; }
+.branch-root { font-family: 'Lora', serif; font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 10px; }
+.branch-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px; margin-bottom: 6px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 4px; transition: border-color 0.15s;
+}
+.branch-item:hover { border-color: var(--navy); }
+.branch-dot2 { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.branch-name { font-family: 'Lora', serif; font-weight: 700; color: var(--ink); font-size: 0.92rem; }
+.branch-desc { font-size: 0.8rem; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+.branch-rel { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--burg); margin-top: 3px; }
+
+/* External DB links */
+.db-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.db-link {
+  display: flex; flex-direction: column;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 5px; padding: 14px 16px;
+  text-decoration: none; transition: all 0.18s;
+  min-height: 44px;
+}
+.db-link:hover { border-color: var(--navy); box-shadow: var(--shadow-sm); text-decoration: none; }
+.db-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+.db-desc { font-size: 0.76rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+/* Contact */
+.contact-note {
+  background: var(--burg-light);
+  border: 1px solid rgba(122,21,37,0.15);
+  border-left: 4px solid var(--burg);
+  border-radius: 5px;
+  padding: 18px 20px;
+  margin-top: 12px;
+}
+.contact-note p { font-size: 0.92rem; color: var(--body); line-height: 1.78; }
+.contact-note a { color: var(--burg); font-weight: 600; }
+
+@media (max-width: 768px) {
+  .connect-grid { grid-template-columns: 1fr; }
+  .db-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── FOOTER ────────────────────────────────────── */
 footer {
   background: var(--navy-dark);
@@ -562,6 +660,7 @@ a:focus, button:focus, [tabindex="0"]:focus {
     <a class="nav-link" href="#relatives" role="menuitem">Relatives</a>
     <a class="nav-link" href="#sar" role="menuitem">SAR</a>
     <a class="nav-link" href="#research" role="menuitem">Research</a>
+    <a class="nav-link" href="#connect" role="menuitem">Connect</a>
   </div>
   <button class="nav-burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">&#9776;</button>
 </nav>
@@ -575,12 +674,13 @@ a:focus, button:focus, [tabindex="0"]:focus {
   <a href="#relatives">Relatives</a>
   <a href="#sar">SAR</a>
   <a href="#research">Research</a>
+  <a href="#connect">Connect</a>
 </div>
 
 <!-- HERO -->
 <section id="hero" aria-label="Introduction">
   <h1 class="hero-title">The <span class="hero-accent">Darby</span> Family</h1>
-  <p class="hero-sub">Eleven generations in America. A family that started in colonial Massachusetts around 1650, moved through Connecticut and New York, and settled in Iowa by 1864. The name itself goes back to 13th-century Lincolnshire, England.</p>
+  <p class="hero-sub">Eleven generations in America. The name itself is Old Norse for "deer farm," given to a Danelaw settlement in the 870s AD. Your direct Darby family has been documented in Lincolnshire, England since at least 1160.</p>
   <div class="hero-cta">
     <a href="#lineage" class="btn btn-primary">See the direct line</a>
     <a href="#families" class="btn btn-secondary">Family lines</a>
@@ -692,6 +792,41 @@ a:focus, button:focus, [tabindex="0"]:focus {
   <div class="sec-rule blue"></div>
   <p class="sec-intro on-dark">Key dates from the earliest English records to Iowa, in chronological order.</p>
   <ol class="tl-list" aria-label="Family timeline">
+
+    <li class="tl-item england">
+      <div class="tl-era">Pre-Roman, East Midlands, England</div>
+      <div class="tl-title">The River Derwent and the Celtic Place Name</div>
+      <div class="tl-body">The earliest layer of the name comes from a Celtic root word for the River Derwent, meaning "valley thick with oaks." The Romans established a fort here called Derventio around 80 AD as part of their road network across the East Midlands. These are the geographic conditions that later produced the name your family carries.</div>
+    </li>
+
+    <li class="tl-item key">
+      <div class="tl-era">870s AD, Danelaw, England</div>
+      <div class="tl-title">Danish Vikings Name the Settlement: Djura-by</div>
+      <div class="tl-body">The Great Heathen Army of Danish Vikings swept through Lincolnshire and the East Midlands in 865 to 878 AD, establishing the Danelaw. They renamed the Roman settlement Djúra-bý, meaning "deer farm" or "deer settlement" in Old Norse. This is the direct etymological source of your surname. The Darby/Derby name is Danish Viking in origin. The settlement became one of the Five Boroughs of the Danelaw.</div>
+    </li>
+
+    <li class="tl-item england">
+      <div class="tl-era">917 AD, East Midlands</div>
+      <div class="tl-title">Anglo-Saxon Chronicle Records "Deoraby"</div>
+      <div class="tl-body">The Anglo-Saxon Chronicle records that Lady Æthelflæd of Mercia captured the borough called Deoraby in July 917, retaking it from the Danes. This is the first written record of the place name that became your surname. The Chronicle notes "there were also killed four thegns who were dear to her inside the gates." The town is recorded as divided by water, with the Viking Deoraby settlement on the north side.</div>
+    </li>
+
+    <li class="tl-item england">
+      <div class="tl-era">1066 to 1086, Lincolnshire and Derbyshire</div>
+      <div class="tl-title">Norman Conquest: de Ferrers Granted 114 Lincolnshire Manors</div>
+      <div class="tl-body">Henry de Ferrers, a Norman lord from Ferrières in Normandy, participated in William the Conqueror's invasion in 1066 and was granted 210 manors, with 114 concentrated in Derbyshire and Lincolnshire, the exact region where your family was living. The 1086 Domesday Book records "Derbei" as the town's name. Your ancestors in Leake and Leverton, Lincolnshire were living within the Ferrers feudal territory at this time, though they are not yet recorded by name.</div>
+    </li>
+
+    <li class="tl-item key">
+      <div class="tl-era">1138 to 1160, Lincolnshire and Derbyshire</div>
+      <div class="tl-title">Earl of Derby Title Created; First Use of the Surname</div>
+      <div class="tl-body">Robert de Ferrers was created the first Earl of Derby in 1138, taking the title from the same Viking town name that is your surname. Then between 1160 and 1182, the first recorded use of "de Derby" as a personal surname appears: <strong>Roger de Derby</strong>, documented in the Register of Antiquities, Lincolnshire, during the reign of Henry II. This Roger de Derby is recorded in Lincolnshire, the same county as your Darby Hall family. He is almost certainly a direct ancestor or close collateral relative.</div>
+    </li>
+
+    <div class="name-callout">
+      <h4>Derby = Darby: the same word</h4>
+      <p>Before 1200, there was no consistent English spelling. Scribes wrote what they heard. The city appears as Deoraby (917), Derbei (1086), and Darbye (1610 maps). The surname appears as both Derby and Darby through the 1600s in the same family's records. In British English, Derby is still pronounced "Darby" today. The two spellings are not two separate names. They are the same name, the same family, written down differently by different hands across seven centuries. <strong>Derbyshire</strong> simply adds the Old English word for county (scir) and means "person from Derbyshire." <strong>Darbyshire</strong> is the same thing with the regional spelling. Early American migrants from Darbyshire often dropped the suffix, and some American "Darby" families are shortened Darbyshires.</p>
+    </div>
 
     <li class="tl-item england">
       <div class="tl-era">c. 1200, Lincolnshire, England</div>
@@ -1119,6 +1254,143 @@ a:focus, button:focus, [tabindex="0"]:focus {
 </div>
 </section>
 
+<!-- CONNECT -->
+<section id="connect">
+<div class="section-inner">
+  <h2 class="sec-title">Find Your Connection</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-intro">If you share Darby, Derby, Grow, Shepherd, Whitney, Sutter, Bement, or any other line on this site, you may be related. Use the tools below to find your branch, search the direct line, and connect through external databases.</p>
+
+  <div class="connect-grid">
+
+    <!-- SEARCH -->
+    <div class="connect-panel">
+      <h3>Search the Direct Line</h3>
+      <div class="name-search-wrap">
+        <input class="name-search" id="nameSearch" type="text" placeholder="Type a name or place..." autocomplete="off" aria-label="Search family members">
+      </div>
+      <div class="search-results" id="searchResults" aria-live="polite">
+        <div class="search-empty">Start typing a name or location above.</div>
+      </div>
+    </div>
+
+    <!-- BRANCHES -->
+    <div class="connect-panel">
+      <h3>Know Your Branch</h3>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px; line-height:1.7;">The family splits at Joseph&#8308; Darby (b. 1772). Two wives, two branches. Find which side you're on.</p>
+      <div class="branch-tree">
+        <div class="branch-root">Joseph&#8308; Darby (b. 1772, Canterbury CT)</div>
+
+        <div class="branch-item">
+          <span class="branch-dot2" style="background:var(--burg)"></span>
+          <div>
+            <div class="branch-name">Anna Grow line (wife 1)</div>
+            <div class="branch-desc">Children: Delia, Lyman&#8309;, Thomas&#8309; (Jacob's ancestor). Thomas&#8309; line continued through Thomas DeWight&#8310; to Iowa. Lyman&#8309; married Cynthia Salisbury; his descendants are in New York and midwest states.</div>
+            <div class="branch-rel">Jacob's direct line</div>
+          </div>
+        </div>
+
+        <div class="branch-item">
+          <span class="branch-dot2" style="background:#1a5c5a"></span>
+          <div>
+            <div class="branch-name">Asenath Tyler line (wife 2)</div>
+            <div class="branch-desc">Children: Ann, Joseph Jr.&#8309;, Lucius Tyler&#8309;, Chauncey&#8309; (Baptist minister), Asenath&#8309;, Edwin&#8309;. Edwin&#8309;'s line includes Dr. Edwin T. Darby, President of the American Dental Association 1893. Chollar and Darby Pottery (Homer NY) is from Joseph Jr.&#8309;.</div>
+            <div class="branch-rel">Collateral cousins</div>
+          </div>
+        </div>
+
+        <div class="branch-item">
+          <span class="branch-dot2" style="background:#4a6a2a"></span>
+          <div>
+            <div class="branch-name">Lucius Edwin&#8311;'s 11 children (Iowa)</div>
+            <div class="branch-desc">Born 1890 to 1911 in Clarksville, Iowa. Ruth Elizabeth, Clarence Arthur&#8312; (Jacob's line), David Edwin, Marie, Lyle DeWight, Irene, Celia, Fannie, Lillith, Lucille, Mervin. Descendants of any of these 10 siblings are Iowa cousins.</div>
+            <div class="branch-rel">Iowa cousins, 1890s to present</div>
+          </div>
+        </div>
+
+        <div class="branch-item">
+          <span class="branch-dot2" style="background:#1a3a6a"></span>
+          <div>
+            <div class="branch-name">Erwin Clarence&#8313;'s 4 siblings</div>
+            <div class="branch-desc">David Lucius&#8313;, Raymond Lyle&#8313; (WWII Navy; California), LeRoy Charles&#8313;, Ellen Lorraine. Lynda Rae (Darby) Ozinga, daughter of Raymond Lyle&#8313;, contributed genealogy data to the Bement Family Chronicles. Her descendants are in Iowa, California, and Minnesota.</div>
+            <div class="branch-rel">Recent Iowa branches</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATABASES -->
+    <div class="connect-panel">
+      <h3>Search External Databases</h3>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px; line-height:1.7;">These databases hold additional records, DNA matches, and community-contributed trees. Searching "Darby" + any ancestor's location should surface connected profiles.</p>
+      <div class="db-grid">
+        <a class="db-link" href="https://www.familysearch.org/search/record/results?q.surname=Darby&q.birthLikePlace=Iowa" target="_blank" rel="noopener">
+          <span class="db-name">FamilySearch</span>
+          <span class="db-desc">Free. Search Darby in Iowa and Connecticut records.</span>
+        </a>
+        <a class="db-link" href="https://www.wikitree.com/index.php?title=Special:SearchPerson&name=Darby&b_year=&b_country=United+States" target="_blank" rel="noopener">
+          <span class="db-name">WikiTree</span>
+          <span class="db-desc">Free collaborative tree. Edward&#185; Darby profile exists here.</span>
+        </a>
+        <a class="db-link" href="https://www.geni.com/search?search_type=people&names=Edward+Darby" target="_blank" rel="noopener">
+          <span class="db-name">Geni.com</span>
+          <span class="db-desc">World family tree. Darby-Grow-Shepherd connections are here.</span>
+        </a>
+        <a class="db-link" href="https://www.ancestry.com/search/?name=Darby&name_x=_1&birth=&birth_x=_1&death=&death_x=_1&event=Iowa&event_x=_1&residence=&residence_x=_1&keyword=&redir=1" target="_blank" rel="noopener">
+          <span class="db-name">Ancestry.com</span>
+          <span class="db-desc">Largest database. Subscription required for most records.</span>
+        </a>
+        <a class="db-link" href="https://dar.org/dar/services/library/genealogical-research-system" target="_blank" rel="noopener">
+          <span class="db-name">DAR GRS</span>
+          <span class="db-desc">Search for Grow, Salisbury, Shepard as patriot ancestors. Free.</span>
+        </a>
+        <a class="db-link" href="https://www.sar.org/genealogy/patriot-research-system/" target="_blank" rel="noopener">
+          <span class="db-name">SAR Patriot Index</span>
+          <span class="db-desc">Search Abraham Salisbury and Eleazor Darby. Free.</span>
+        </a>
+        <a class="db-link" href="https://archive.org/details/whitneydescendan00pier" target="_blank" rel="noopener">
+          <span class="db-name">Whitney Genealogy 1895</span>
+          <span class="db-desc">Free at Internet Archive. Find the CT branch to Eleanor Shepherd.</span>
+        </a>
+        <a class="db-link" href="https://www.familytreedna.com/groups/darby/about" target="_blank" rel="noopener">
+          <span class="db-name">FTDNA Darby Group</span>
+          <span class="db-desc">DNA project for Darby/Derby surname. Haplogroup R-M269 and I-M253.</span>
+        </a>
+      </div>
+
+      <div class="contact-note" style="margin-top:20px;">
+        <p><strong>Know something we don't?</strong> If you have records, photos, or corrections for any person on this site, or you've found a DNA match, reach out at <a href="mailto:jacob@velasolved.com">jacob@velasolved.com</a>. All contributions will be credited and incorporated.</p>
+      </div>
+    </div>
+
+    <!-- DARBY NAME GUIDE -->
+    <div class="connect-panel">
+      <h3>Is Your Surname a Variant?</h3>
+      <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px; line-height:1.7;">These surname variants all share the same Viking root. If your family uses one of these spellings, you may share a common geographic origin even if not a direct genealogical connection.</p>
+      <div style="display:grid; gap:8px;">
+        <div style="background:var(--white); border:1px solid var(--border); border-radius:4px; padding:12px 14px;">
+          <div style="font-weight:700; font-size:0.92rem; color:var(--ink); margin-bottom:3px;">Darby / Derby</div>
+          <div style="font-size:0.8rem; color:var(--muted); line-height:1.5;">Same word, different spelling. The city of Derby is still pronounced "Darby" in England. Interchangeable in colonial American records through the 1700s.</div>
+        </div>
+        <div style="background:var(--white); border:1px solid var(--border); border-radius:4px; padding:12px 14px;">
+          <div style="font-weight:700; font-size:0.92rem; color:var(--ink); margin-bottom:3px;">Derbyshire / Darbyshire</div>
+          <div style="font-size:0.8rem; color:var(--muted); line-height:1.5;">Means "person from Derbyshire." Most common in Lancashire (West Derby area), not the county itself. Some American "Darby" families are shortened Darbyshires. A Massachusetts man was recorded as Darby, Darbe, Darbeyshier, and Derbyshire across different documents 1672 to 1725.</div>
+        </div>
+        <div style="background:var(--white); border:1px solid var(--border); border-radius:4px; padding:12px 14px;">
+          <div style="font-weight:700; font-size:0.92rem; color:var(--ink); margin-bottom:3px;">O'Darby / Irish Darby</div>
+          <div style="font-size:0.8rem; color:var(--muted); line-height:1.5;">In Ireland, Darby is an anglicization of Gaelic O Diarmada (descendant of Diarmaid). Phonetically similar but etymologically unrelated to the English surname. Separate genealogical line.</div>
+        </div>
+        <div style="background:var(--white); border:1px solid var(--border); border-radius:4px; padding:12px 14px;">
+          <div style="font-weight:700; font-size:0.92rem; color:var(--ink); margin-bottom:3px;">de Derby (Norman spelling)</div>
+          <div style="font-size:0.8rem; color:var(--muted); line-height:1.5;">The "de" prefix indicates someone from Derby. Roger de Derby (Lincolnshire, 1160 to 1182) is the earliest recorded use of the surname. The Lincolnshire Darby Hall family stopped using the "de" prefix as English spelling conventions changed in the 1300s.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-title">The Darby Collective</div>
@@ -1131,6 +1403,7 @@ a:focus, button:focus, [tabindex="0"]:focus {
     <a href="#relatives">Relatives</a>
     <a href="#sar">SAR</a>
     <a href="#research">Research</a>
+    <a href="#connect">Find Your Connection</a>
   </div>
   <div class="footer-rule"></div>
   <div class="footer-copy">
@@ -1158,7 +1431,7 @@ mobileMenu.querySelectorAll('a').forEach(a => {
 });
 
 // ACTIVE NAV
-const sectionIds = ['hero','lineage','timeline','families','england','relatives','sar','research'];
+const sectionIds = ['hero','lineage','timeline','families','england','relatives','sar','research','connect'];
 window.addEventListener('scroll', () => {
   const y = window.scrollY + 80;
   let cur = '';
@@ -1256,6 +1529,70 @@ function showDetail(id) {
 function closeDetail() {
   const panel = document.getElementById('detail-panel');
   panel.style.display = 'none';
+}
+
+// ── NAME SEARCH ──
+const searchData = [
+  { gen:'Generation 1', name:'Edward¹ Darby (Derby)', years:'c.1625, d. aft. 1669', meta:'Boston, MA · First American Darby · Agnes Derby 1650 Surrey will', id:'edward' },
+  { gen:'Generation 2', name:'James² Darby', years:'1702, c.1786', meta:'Dunstable MA · Canterbury CT · Mortlake Society Baptist community', id:'james' },
+  { gen:'Generation 3', name:'Eleazor³ Darby', years:'1731, 1813', meta:'Canterbury CT · Cortland NY · SAR candidate · 81 years old', id:'eleazor' },
+  { gen:'Generation 4', name:'Joseph⁴ Darby', years:'1772, c.1836', meta:'Canterbury CT · Homer NY · Coroner Cortland County · married Anna Grow and Asenath Tyler', id:'joseph' },
+  { gen:'Generation 4, Branch', name:'Anna (Grow) Darby', years:'1777, 1806', meta:'Hampton CT · Grow Hill · Thomas Grow daughter · died aged 29', id:'joseph' },
+  { gen:'Generation 4, Branch', name:'Asenath (Tyler) Darby', years:'c.1785', meta:'Connecticut · Cortland NY · Joseph⁴ second wife · children include Chauncey, Edwin, Joseph Jr', id:'joseph' },
+  { gen:'Generation 5', name:'Thomas⁵ Darby', years:'1802, 1883', meta:'Cortland NY · 81 years · Anna Grow\'s son · married Abigail Sumner then Urana M. Peck', id:'thomas5' },
+  { gen:'Generation 5, Collateral', name:'Lyman⁵ Darby', years:'c.1796', meta:'Cortland NY · married Cynthia Salisbury · SAR Salisbury line · Anna Grow\'s son', id:'joseph' },
+  { gen:'Generation 6', name:'Thomas DeWight⁶ Darby', years:'1842, 1900', meta:'Cortland NY · Clarksville Iowa · first Iowa Darby · Lynwood Cemetery · married Frances Bement', id:'tdw' },
+  { gen:'Generation 7', name:'Lucius Edwin⁷ Darby', years:'1868, 1943', meta:'Portland NY · Clarksville Iowa · 11 children · Plymouth Brethren · married Mary Amy Scott', id:'le' },
+  { gen:'Generation 8', name:'Clarence Arthur⁸ Darby', years:'1896, 1985', meta:'Clarksville Iowa · Nashua Iowa · Baptist farmer · married Katie Sutter · Oak Hill Cemetery', id:'ca' },
+  { gen:'Generation 8, Katie', name:'Katie Sutter (Katrina Maria)', years:'c.1896, 1917 marriage', meta:'Charles City Iowa · no birth certificate · married Clarence Arthur⁸ · German-Iowa Sutter family', id:'ca' },
+  { gen:'Generation 9', name:'Erwin Clarence⁹ Darby', years:'b. 1924', meta:'Plainfield Iowa · Waterloo Iowa · married Ella Podhaski · your grandfather', id:'ec' },
+  { gen:'Generation 9, Ella', name:'Ella Podhaski', years:'married 1947', meta:'Waterloo Iowa · Podhale Poland · Polish Tatra highlands · Podhaski means "from the Podhale"', id:'ec' },
+  { gen:'Generation 9, Sibling', name:'David Lucius⁹ Darby', years:'b. 1919, Nashua IA', meta:'Married Geneva McCurly Howard · son Sandra Kay · great-grand-uncle', id:'ca' },
+  { gen:'Generation 9, Sibling', name:'Raymond Lyle⁹ Darby', years:'b. 1923, Nashua IA', meta:'WWII Navy · Aviation Machinist · ATSF Railroad California · Lynda Rae Darby Ozinga is his daughter', id:'ca' },
+  { gen:'Generation 9, Sibling', name:'LeRoy Charles⁹ Darby', years:'b. 1927, Nashua IA', meta:'Married Colleen Obermeier · children Cathleen, Douglas, Tricia · great-grand-uncle', id:'ca' },
+  { gen:'Generation 9, Sibling', name:'Ellen Lorraine Darby', years:'b. 1929, Nashua IA', meta:'Married Harold Roberts · great-grand-aunt', id:'ca' },
+  { gen:'Generation 10', name:'Kenneth Duane¹⁰ Darby', years:'b. 1955', meta:'Waterloo Iowa · married Cynthia Jean Steinbron 1978 · your father', id:'kd' },
+  { gen:'Generation 11', name:'Jacob Richard¹¹ Darby', years:'b. Sept 12, 1987', meta:'Waterloo Iowa · West Branch Iowa · Gen. 11 direct line', id:'jacob' },
+  { gen:'Notable, Grow Line', name:'Galusha Aaron Grow', years:'1823, 1907', meta:'Speaker US House of Representatives 1861-1863 · Homestead Act 1862 · born Grow Hill Hampton CT · Thomas Grow ancestor shared with Anna Grow Darby', id:'joseph' },
+  { gen:'Notable, Shepard Line', name:'Eli Whitney', years:'1765, 1825', meta:'Cotton gin inventor 1793 · Westborough MA · descended Ralph Shepard Limehouse London 1635 · same Shepard line as Eleanor Shepherd who married James² Darby', id:'james' },
+  { gen:'Notable, Darby Line', name:'Dr. Edwin T.⁶ Darby', years:'b. 1845', meta:'ADA President 1893 · Darby Tooth Scaler · Lansdowne Pennsylvania · son of Chauncey⁵ Darby (Joseph⁴ son by Asenath Tyler)', id:'joseph' },
+  { gen:'Notable, Pottery', name:'Chollar and Darby Pottery', years:'1839 to 1844', meta:'Homer NY and Cortland NY · Joseph Jr.⁵ Darby and Thomas Chollar · stoneware still found at auction', id:'joseph' },
+  { gen:'England', name:'Darby Hall, Leake and Leverton', years:'c.1200 to 1701', meta:'Lincolnshire England · family seat · "considerable proprietors" · Darby and Gilbert memorials · Leake church chancel', id:'edward' },
+  { gen:'England', name:'Roger de Derby', years:'1160 to 1182', meta:'Lincolnshire England · FIRST recorded use of surname · Register of Antiquities · Henry II reign', id:'edward' },
+  { gen:'England, Whitney', name:'Thomas Whitney of Lambeth Marsh', years:'c.1550, 1637', meta:'Westminster London · married Mary Bray 1583 · father of John Whitney the immigrant · descended Turstin the Fleming 1066', id:'james' },
+  { gen:'England, Whitney', name:'John Whitney', years:'1592, 1673', meta:'Isleworth London · Watertown Massachusetts 1635 · ship Elizabeth and Ann · Merchant Tailor · Town Clerk · Selectman 1638-1655', id:'james' },
+  { gen:'England, Shepard', name:'Ralph Shepard', years:'1606, 1693', meta:'Limehouse Stepney London · Dedham Massachusetts 1635 · ship Abigail · married Thankslorde Perkins 1632 · signed Dedham Covenant', id:'james' },
+  { gen:'England, Hooke', name:'Humphrey Hooke MP', years:'c.1580s, 1658', meta:'Bristol Gloucestershire · Member of Parliament · will June 25 1658 · Susanna Hooke probably his granddaughter · married Edward Derby 1659', id:'edward' }
+];
+
+const searchInput = document.getElementById('nameSearch');
+const searchResults = document.getElementById('searchResults');
+
+if (searchInput) {
+  searchInput.addEventListener('input', function() {
+    const q = this.value.trim().toLowerCase();
+    if (!q) {
+      searchResults.innerHTML = '<div class="search-empty">Start typing a name or location above.</div>';
+      return;
+    }
+    const hits = searchData.filter(d =>
+      d.name.toLowerCase().includes(q) ||
+      d.meta.toLowerCase().includes(q) ||
+      d.gen.toLowerCase().includes(q) ||
+      d.years.toLowerCase().includes(q)
+    ).slice(0, 8);
+    if (!hits.length) {
+      searchResults.innerHTML = '<div class="search-empty">No matches found. Try a location, year, or partial name.</div>';
+      return;
+    }
+    searchResults.innerHTML = hits.map(h => `
+      <div class="search-hit" onclick="if('${h.id}' && document.getElementById('lineage')){showDetail('${h.id}');document.getElementById('lineage').scrollIntoView({behavior:'smooth'})}" tabindex="0">
+        <div class="search-hit-gen">${h.gen}</div>
+        <div class="search-hit-name">${h.name}</div>
+        <div class="search-hit-meta">${h.years} &nbsp;&middot;&nbsp; ${h.meta}</div>
+      </div>
+    `).join('');
+  });
 }
 </script>
 </body>
