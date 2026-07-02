@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Darby Collective — Family History Since 1200</title>
+<meta name="description" content="The documented history of the Darby family — from medieval Lincolnshire, England through colonial Massachusetts, Connecticut, New York, and Iowa. 11+ generations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── ROOT ─────────────────────────────────────── */
+:root {
+  --ink: #1a1208;
+  --parchment: #f8f3e8;
+  --parchment2: #f2ebe0;
+  --sepia: #6b4f2a;
+  --sepia2: #8c6b3f;
+  --gold: #b8860b;
+  --gold2: #d4a828;
+  --gold3: #e8c84a;
+  --rust: #7a1f1f;
+  --rust2: #9a2f2f;
+  --cream: #fdfaf4;
+  --muted: #8a7060;
+  --rule: #d4c4a8;
+  --card: #faf7f2;
+  --shadow: 0 4px 24px rgba(26,18,8,0.10);
+  --shadow-sm: 0 2px 8px rgba(26,18,8,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: var(--rust); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAV ──────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(26,18,8,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(184,134,11,0.25);
+  padding: 0 5%;
+  display: flex; align-items: center; gap: 0;
+  height: 58px;
+}
+.nav-logo {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.15rem;
+  color: var(--gold3);
+  letter-spacing: 0.02em;
+  margin-right: auto;
+  white-space: nowrap;
+}
+.nav-logo span { color: rgba(255,255,255,0.4); font-style: italic; font-size: 0.85rem; margin-left: 10px; }
+.nav-links { display: flex; gap: 0; }
+.nav-link {
+  color: #c8b89a;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 14px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.nav-link:hover { color: var(--gold3); border-bottom-color: var(--gold); text-decoration: none; }
+.nav-link.active { color: var(--gold3); border-bottom-color: var(--gold); }
+.nav-burger { display: none; background: none; border: none; color: var(--gold3); font-size: 1.4rem; cursor: pointer; padding: 8px; margin-left: 8px; }
+
+/* ── HERO ─────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 5% 60px;
+  position: relative;
+  overflow: hidden;
+}
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(184,134,11,0.04) 40px, rgba(184,134,11,0.04) 41px);
+}
+.hero-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+}
+.hero-title {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  color: var(--parchment);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+}
+.hero-title .gold { color: var(--gold3); }
+.hero-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: #c8b89a;
+  font-style: italic;
+  position: relative; z-index: 1;
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+.hero-rule {
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 32px;
+  position: relative; z-index: 1;
+}
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative; z-index: 1;
+  margin-bottom: 48px;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'IM Fell English', serif;
+  font-size: 2.4rem;
+  color: var(--gold3);
+  line-height: 1;
+  display: block;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a7060;
+}
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  border-radius: 3px;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--gold2); text-decoration: none; }
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #c8b89a;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  border-radius: 3px;
+  display: inline-block;
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold3); text-decoration: none; }
+.hero-scroll {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  z-index: 1; color: rgba(255,255,255,0.2);
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  animation: pulse 2.5s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+
+/* ── SECTION COMMON ───────────────────────────── */
+section { padding: 90px 5%; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.sec-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 10px;
+}
+.sec-title {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.sec-title.light { color: var(--parchment); }
+.sec-intro {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.75;
+}
+.sec-rule {
+  width: 48px; height: 2px;
+  background: var(--gold);
+  margin: 20px 0 40px;
+}
+
+/* ── LINEAGE SECTION ──────────────────────────── */
+#lineage { background: var(--parchment); }
+.lineage-chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0 -4px;
+}
+.gen-card {
+  flex: 1;
+  min-width: 130px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  margin: 4px;
+  padding: 18px 14px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+.gen-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--gold); }
+.gen-card.you { background: #fdfaef; border-color: var(--gold); border-width: 2px; }
+.gen-card.ancestor { background: #fdf2f0; border-left: 3px solid var(--rust); }
+.gen-gen { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-family: 'Inter', sans-serif; margin-bottom: 6px; }
+.gen-name { font-family: 'IM Fell English', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
+.gen-years { font-size: 0.72rem; color: var(--muted); font-family: 'Inter', sans-serif; }
+.gen-loc { font-size: 0.68rem; color: var(--muted); font-family: 'Inter', sans-serif; margin-top: 4px; }
+.gen-arrow { display: flex; align-items: center; justify-content: center; color: var(--rule); font-size: 1rem; flex-shrink: 0; padding: 0 2px; margin: 4px 0; }
+
+/* ── TIMELINE ─────────────────────────────────── */
+#timeline { background: var(--ink); }
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  position: relative;
+  padding-left: 24px;
+}
+.timeline-grid::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), rgba(184,134,11,0.1));
+}
+.tl-item {
+  position: relative;
+  padding: 0 0 36px 28px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -24px; top: 6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--sepia);
+  border: 2px solid var(--ink);
+}
+.tl-item.key::before { background: var(--gold); }
+.tl-item.england::before { background: #3a6aaa; }
+.tl-era { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-family: 'Inter', sans-serif; margin-bottom: 3px; }
+.tl-title { font-family: 'IM Fell English', serif; font-size: 1.05rem; color: var(--parchment); margin-bottom: 4px; }
+.tl-body { font-size: 0.85rem; color: #8a7060; line-height: 1.65; }
+
+/* ── FAMILIES SECTION ─────────────────────────── */
+#families { background: var(--parchment2); }
+.families-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+.family-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.family-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.family-card h3 {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.family-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.family-origin { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; font-family: 'Inter', sans-serif; }
+.family-note { font-size: 0.85rem; color: var(--sepia); line-height: 1.6; }
+.family-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-top: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── ENGLAND SECTION ──────────────────────────── */
+#england { background: var(--parchment); }
+.england-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+.england-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px;
+  border-left: 4px solid var(--rust);
+  box-shadow: var(--shadow-sm);
+}
+.england-card.blue { border-left-color: #3a6aaa; }
+.england-card.green { border-left-color: #2a7a4a; }
+.england-card.purple { border-left-color: #6a3a9a; }
+.england-card h3 { font-family: 'IM Fell English', serif; font-size: 1.05rem; margin-bottom: 4px; }
+.england-card .dates { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+.england-card p { font-size: 0.85rem; color: var(--sepia); line-height: 1.65; }
+
+/* ── SAR SECTION ──────────────────────────────── */
+#sar { background: var(--ink); }
+.sar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 40px; }
+.sar-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 22px;
+  transition: all 0.2s;
+}
+.sar-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(184,134,11,0.3); }
+.sar-line { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-family: 'Inter', sans-serif; margin-bottom: 8px; }
+.sar-card h3 { font-family: 'IM Fell English', serif; font-size: 1rem; color: var(--parchment); margin-bottom: 6px; }
+.sar-card p { font-size: 0.83rem; color: #8a7060; line-height: 1.6; }
+.sar-status {
+  display: inline-block; margin-top: 10px;
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+}
+.sar-status.confirmed { background: #2a5a2a; color: #8ada8a; }
+.sar-status.research { background: rgba(184,134,11,0.2); color: var(--gold3); }
+
+/* ── RELATIVES SECTION ────────────────────────── */
+#relatives { background: var(--parchment2); }
+.relatives-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 36px; }
+.rel-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.rel-name { font-family: 'IM Fell English', serif; font-size: 0.95rem; margin-bottom: 2px; }
+.rel-dates { font-size: 0.72rem; color: var(--muted); margin-bottom: 6px; font-family: 'Inter', sans-serif; }
+.rel-note { font-size: 0.82rem; color: var(--sepia); line-height: 1.55; }
+.rel-rel { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); margin-bottom: 4px; font-family: 'Inter', sans-serif; }
+
+/* ── RESEARCH SECTION ─────────────────────────── */
+#research { background: var(--parchment); }
+.research-list { margin-top: 36px; display: grid; gap: 14px; }
+.research-item {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: start;
+  box-shadow: var(--shadow-sm);
+}
+.research-num {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  line-height: 1;
+  text-align: center;
+}
+.research-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+.research-item p { font-size: 0.83rem; color: var(--sepia); line-height: 1.6; }
+
+/* ── FOOTER ───────────────────────────────────── */
+footer {
+  background: rgba(26,18,8,0.98);
+  padding: 60px 5% 40px;
+  text-align: center;
+}
+.footer-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.6rem;
+  color: var(--gold3);
+  margin-bottom: 8px;
+}
+.footer-sub { color: #8a7060; font-size: 0.82rem; margin-bottom: 32px; }
+.footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.footer-link { color: #c8b89a; font-size: 0.78rem; letter-spacing: 0.08em; transition: color 0.2s; }
+.footer-link:hover { color: var(--gold3); text-decoration: none; }
+.footer-rule { width: 60px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 auto 24px; }
+.footer-copy { font-size: 0.72rem; color: #4a3a28; font-family: 'Inter', sans-serif; letter-spacing: 0.06em; }
+
+/* ── MOBILE ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 58px; left: 0; right: 0; background: rgba(26,18,8,0.98); padding: 20px; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .nav-link { height: 44px; padding: 0 8px; }
+  .nav-burger { display: block; }
+  .hero-stats { gap: 28px; }
+  .england-grid { grid-template-columns: 1fr; }
+  .gen-card { min-width: 100px; }
+  section { padding: 60px 5%; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">The Darby Collective <span>est. c.1200</span></div>
+  <div class="nav-links" id="navLinks">
+    <a class="nav-link" href="#lineage">Direct Line</a>
+    <a class="nav-link" href="#timeline">Timeline</a>
+    <a class="nav-link" href="#families">Family Lines</a>
+    <a class="nav-link" href="#england">England</a>
+    <a class="nav-link" href="#relatives">Relatives</a>
+    <a class="nav-link" href="#sar">SAR</a>
+    <a class="nav-link" href="#research">Research</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Menu">☰</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">The Darby Collective</div>
+  <h1 class="hero-title">One Name.<br><span class="gold">Eight Centuries.</span></h1>
+  <p class="hero-subtitle">From medieval Lincolnshire to the Iowa prairie — a documented family history spanning 11 American generations and 800 years of recorded ancestry.</p>
+  <div class="hero-rule"></div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">800+</span><span class="stat-label">Years Documented</span></div>
+    <div class="stat"><span class="stat-num">11</span><span class="stat-label">U.S. Generations</span></div>
+    <div class="stat"><span class="stat-num">6</span><span class="stat-label">Family Lines</span></div>
+    <div class="stat"><span class="stat-num">4+</span><span class="stat-label">SAR Candidate Lines</span></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#lineage" class="btn-primary">Explore the Line</a>
+    <a href="#families" class="btn-outline">All Family Lines</a>
+  </div>
+  <div class="hero-scroll">↓ &nbsp; Scroll to discover</div>
+</section>
+
+<!-- DIRECT LINEAGE -->
+<section id="lineage">
+<div class="section-inner">
+  <div class="sec-label">Your Direct Ancestors</div>
+  <h2 class="sec-title">The Unbroken Line</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-intro">Eleven generations of direct descent from Edward Darby (Boston, 1658) to Jacob Richard Darby (West Branch, Iowa, 1987). Each link is documented.</p>
+
+  <div style="margin-top:40px;">
+  <div class="lineage-chain">
+    <div class="gen-card ancestor" onclick="showDetail('edward')">
+      <div class="gen-gen">Generation 1</div>
+      <div class="gen-name">Edward¹ Darby</div>
+      <div class="gen-years">c.1625–d. aft.1669</div>
+      <div class="gen-loc">Boston, MA</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('james')">
+      <div class="gen-gen">Generation 2</div>
+      <div class="gen-name">James² Darby</div>
+      <div class="gen-years">1702–c.1786</div>
+      <div class="gen-loc">Canterbury, CT</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('eleazor')">
+      <div class="gen-gen">Generation 3</div>
+      <div class="gen-name">Eleazor³ Darby</div>
+      <div class="gen-years">1731–1813</div>
+      <div class="gen-loc">Canterbury, CT / Cortland, NY</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('joseph')">
+      <div class="gen-gen">Generation 4</div>
+      <div class="gen-name">Joseph⁴ Darby</div>
+      <div class="gen-years">1772–c.1836</div>
+      <div class="gen-loc">Homer, NY</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('thomas5')">
+      <div class="gen-gen">Generation 5</div>
+      <div class="gen-name">Thomas⁵ Darby</div>
+      <div class="gen-years">1802–1883</div>
+      <div class="gen-loc">Cortland, NY</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('tdw')">
+      <div class="gen-gen">Generation 6</div>
+      <div class="gen-name">Thomas DeWight⁶</div>
+      <div class="gen-years">1842–1900</div>
+      <div class="gen-loc">Cortland, NY → Iowa</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('le')">
+      <div class="gen-gen">Generation 7</div>
+      <div class="gen-name">Lucius Edwin⁷</div>
+      <div class="gen-years">1868–1943</div>
+      <div class="gen-loc">Clarksville, IA</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('ca')">
+      <div class="gen-gen">Generation 8</div>
+      <div class="gen-name">Clarence Arthur⁸</div>
+      <div class="gen-years">1896–1985</div>
+      <div class="gen-loc">Nashua, IA</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('ec')">
+      <div class="gen-gen">Generation 9</div>
+      <div class="gen-name">Erwin Clarence⁹</div>
+      <div class="gen-years">b.1924</div>
+      <div class="gen-loc">Waterloo, IA</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card ancestor" onclick="showDetail('kd')">
+      <div class="gen-gen">Generation 10</div>
+      <div class="gen-name">Kenneth Duane¹⁰</div>
+      <div class="gen-years">b.1955</div>
+      <div class="gen-loc">Waterloo, IA</div>
+    </div>
+    <div class="gen-arrow">→</div>
+    <div class="gen-card you" onclick="showDetail('jacob')">
+      <div class="gen-gen" style="color:var(--rust)">Generation 11 — You</div>
+      <div class="gen-name" style="color:var(--rust)">Jacob Richard¹¹</div>
+      <div class="gen-years">b. Sept 12, 1987</div>
+      <div class="gen-loc">West Branch, IA</div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Detail Panel -->
+  <div id="detail-panel" style="display:none; margin-top:36px; background:var(--cream); border:1px solid var(--rule); border-radius:6px; padding:28px; box-shadow:var(--shadow-sm);">
+    <div id="detail-content"></div>
+  </div>
+</div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+<div class="section-inner">
+  <div class="sec-label" style="color:var(--gold)">Chronological History</div>
+  <h2 class="sec-title light">800 Years of the Darby Name</h2>
+  <div class="sec-rule"></div>
+  <div style="max-width:700px; margin:0 auto; margin-top:40px;">
+  <div class="timeline-grid">
+
+    <div class="tl-item england">
+      <div class="tl-era">c. 1200 — Lincolnshire, England</div>
+      <div class="tl-title">The Name Appears in Lincolnshire</div>
+      <div class="tl-body">The earliest recorded Darby family: a pedigree noting that Nicholas Tamworth of Tamworth married Jane, daughter of Darby, of Leverton, Lincolnshire — c. 1200. The Darby name derives from Old Norse <em>djúr-byr</em> (deer settlement), place name for Derby, Derbyshire, recorded in the Anglo-Saxon Chronicle as "Doeraby" in 917 AD.</div>
+    </div>
+
+    <div class="tl-item england">
+      <div class="tl-era">1346–1620 — Lincolnshire, England</div>
+      <div class="tl-title">The Darby Hall Family of Leake & Leverton</div>
+      <div class="tl-body">Ralph de Darby of Bennington (1346), Thomas Darby (1346, 1353), Robert Darby (1357), Roger Darby of Leverton, Ralph Darby of Leake (1517), Thomas Darby of Bennington (1536–1544). The family maintained <strong>Darby Hall</strong> — a large ancient building in Leake/Leverton, Lincolnshire, "the residence of the family of that name who were considerable proprietors in this and the adjoining parishes for several centuries." Memorials of the Darby and Gilbert families remain in the chancel floor at Leake church. William Darby was living c.1620; Thomas Darby of Leake died 1659.</div>
+    </div>
+
+    <div class="tl-item england">
+      <div class="tl-era">1623 — London / New England</div>
+      <div class="tl-title">First Darby in American Colonial Record</div>
+      <div class="tl-body">William Darby of Dorchester, England petitions the Council for New England, February 18, 1623, that associates might begin a plantation at Cape Ann — which led to the settlement of Naumkeag (now Salem, Massachusetts). William Darby is also listed among Representatives to the General Court in England, October 12, 1629 — "William Darby, John Smith, George Philips, Simon Whitcomb, John Davenport..." This places a Darby at the founding administrative moment of Massachusetts Bay Colony.</div>
+    </div>
+
+    <div class="tl-item key">
+      <div class="tl-era">1650 — Surrey, England</div>
+      <div class="tl-title">Agnes Derby's Will Names "Edward Derby, in New England"</div>
+      <div class="tl-body">Agnes Derby of Bisley, Surrey, England makes a nuncupative will (May 20, 1650, proved June 1, 1650), bequeathing money in trust to Henry Collier "He to pay Edward Derby, in New England, ten pounds when he shall come and demand the same." This is almost certainly the first documentary mention of your direct ancestor Edward¹ Darby — placing him in New England by 1650 and connected to a Surrey/Bisley England family. Bisley is approximately 30 miles southwest of London.</div>
+    </div>
+
+    <div class="tl-item key">
+      <div class="tl-era">January 25, 1658/59 — Boston, Massachusetts</div>
+      <div class="tl-title">Edward Derby Marries Susanna Hooke</div>
+      <div class="tl-body">The Boston vital records confirm: "Edward Derby was married to Susanna Hook, January 25, 1659, by Richard Bellingham, Deputy Governor." Richard Bellingham served as Governor of Massachusetts Bay Colony multiple times — this was a significant civic officiant, suggesting the families had standing in the colony. Edward is also recorded as having settled in Braintree, Massachusetts, where a daughter Mary was born December 29, 1660, and Priscilla, June 20, 1672.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-era">1702 — Dunstable, Massachusetts</div>
+      <div class="tl-title">James² Darby Born</div>
+      <div class="tl-body">James² Darby born April 30, 1702 in Dunstable, Essex (now Middlesex), Massachusetts. He later settled at Mortlake Society, Canterbury, Connecticut — one of the most active Separatist/Baptist communities in colonial New England. He married Eleanor Shepherd, connecting the Darby line to the Puritan Great Migration families of Ralph Shepard (London, 1635) and John Whitney (London/Isleworth, 1635).</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-era">1731–1813 — Canterbury, CT / Cortland, NY</div>
+      <div class="tl-title">Eleazor³ Darby — Lives Through the Revolution</div>
+      <div class="tl-body">Eleazor³ born July 6, 1731 in Canterbury, Connecticut. He was 44–52 years old during the Revolutionary War (1775–1783), living in an actively Patriot Connecticut community. Hampton, Connecticut men marched through the night after hearing of Lexington (April 1775). Eleazor likely rendered some form of patriot service — making him a prime SAR candidate. He died January 31, 1813 in Cortland, New York, aged 81. Buried: Cortland Old Burial Ground.</div>
+    </div>
+
+    <div class="tl-item key">
+      <div class="tl-era">1796–1806 — Homer, New York</div>
+      <div class="tl-title">Joseph⁴ Marries Anna Grow — The Grow Connection</div>
+      <div class="tl-body">Joseph⁴ Darby marries Anna Grow of Hampton, Connecticut in 1796. Anna (b. February 15, 1777) is the daughter of Thomas Grow of Hampton — whose family settled <em>Grow Hill</em> in 1723, came from Ipswich, Massachusetts, and bears a Germanic surname (Grow/Groh). Anna died June 30, 1806, aged 29, leaving three children: Delia, Lyman, and Thomas (your ancestor). Joseph remarried Asenath Tyler in 1807. Their descendants filled Cortland County, NY through the 19th century.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-era">1864 — Cortland, NY → Clarksville, Iowa</div>
+      <div class="tl-title">Thomas DeWight⁶ Crosses Into Iowa</div>
+      <div class="tl-body">Thomas DeWight⁶ Darby (b. November 23, 1842, Cortland, NY) marries Frances Elizabeth Bement in 1864 and migrates to Clarksville, Iowa — your family's first Iowa generation. He dies August 30, 1900 and is buried at Lynwood Cemetery, Clarksville. His son Lucius Edwin⁷ (b. 1868) becomes a Plymouth Brethren lay minister and farmer in Clarksville, rooting the family in Butler County, Iowa for generations.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-era">1896–1985 — Clarksville & Nashua, Iowa</div>
+      <div class="tl-title">Clarence Arthur⁸ — Baptist Farmer of Nashua</div>
+      <div class="tl-body">Clarence Arthur⁸ (b. July 7, 1896) marries Katie Sutter on May 10, 1917 in Charles City, Iowa. Katie — originally named Katrina Maria — had no birth certificate (born at home) and legally chose "Katie Darby," the name she was always called. Baptist. Farmer. Five children. Died August 28, 1985, Oak Hill Cemetery, Nashua, Iowa.</div>
+    </div>
+
+    <div class="tl-item key">
+      <div class="tl-era">September 12, 1987 — Waterloo, Iowa</div>
+      <div class="tl-title">Jacob Richard¹¹ Darby — Generation 11</div>
+      <div class="tl-body">The 11th documented American generation of the Darby name, and the 13th+ generation from the English roots in Lincolnshire and Surrey. Descended through 11 unbroken links spanning Boston, Canterbury, Cortland, Clarksville, Nashua, Waterloo, and West Branch. Carrying ancestry from at minimum six distinct family lines: Darby, Grow, Shepherd, Whitney, Hooke, and Podhaski (Polish Podhale region).</div>
+    </div>
+
+  </div>
+  </div>
+</div>
+</section>
+
+<!-- FAMILY LINES -->
+<section id="families">
+<div class="section-inner">
+  <div class="sec-label">All Connected Lines</div>
+  <h2 class="sec-title">The Family Lines</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-intro">The Darby name is the patriline, but family history runs through every marriage. These are the documented lines that flow into the Darby tree.</p>
+
+  <div class="families-grid">
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:var(--rust)"></span>Darby / Derby</h3>
+      <div class="family-origin">Lincolnshire, England → Boston, MA → Iowa (c.1200–present)</div>
+      <div class="family-note">The patriline. Name from Old Norse <em>djúr-byr</em> (deer settlement). First recorded c.1200 Lincolnshire. First American: Edward Derby, Boston 1650s. Held Darby Hall, Leake & Leverton, Lincolnshire for "several centuries." Coat of arms: argent, a stag's head caboshed gules, attired or, between three roundels azure.</div>
+      <div class="family-badge" style="background:var(--rust); color:#fff;">Direct Patriline</div>
+    </div>
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:#1a5c5a"></span>Grow / Groh</h3>
+      <div class="family-origin">Germanic/Low Countries → Ipswich MA → Hampton CT (c.1700–1800s)</div>
+      <div class="family-note">Anna (Grow) Darby, wife of Joseph⁴ (b. 1777, Hampton CT), was daughter of Thomas Grow. The founding Grow settler came from Ipswich, MA in 1723, settling <em>Grow Hill</em> in Hampton, CT. Grow/Groh is Germanic in origin. Collateral descendant: Galusha Aaron Grow, 24th Speaker of the U.S. House of Representatives (1861–63), who championed the Homestead Act of 1862.</div>
+      <div class="family-badge" style="background:#1a5c5a; color:#fff;">Joseph⁴'s First Wife</div>
+    </div>
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:#4a2070"></span>Shepherd / Shepard</h3>
+      <div class="family-origin">Limehouse/Stepney, London → Dedham MA (1606–present)</div>
+      <div class="family-note">Eleanor Shepherd, wife of James² Darby, was daughter of Samuel Shepherd and Eleanor Whitney. The line traces to Deacon Ralph Shepard (b. 1606, Limehouse, Stepney, London) — a Puritan tailor persecuted for non-conformism, who fled England June 30, 1635 aboard the ship <em>Abigail</em>. Founded Dedham, MA. Collateral descendant: Eli Whitney, inventor of the cotton gin.</div>
+      <div class="family-badge" style="background:#4a2070; color:#fff;">James²'s Wife's Line</div>
+    </div>
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:#1f5c2a"></span>Whitney</h3>
+      <div class="family-origin">Isleworth-on-Thames, London → Watertown MA (c.1589–present)</div>
+      <div class="family-note">Eleanor Whitney (mother of Eleanor Shepherd, James²'s wife) descends from John Whitney Sr. — Merchant Tailor's Guild member, born c.1589 at Isleworth, 8 miles from Westminster. Arrived Watertown, MA July 1635 aboard ship <em>Elizabeth and Ann</em>. Freeman of Massachusetts Bay Colony (1636), Constable, Selectman 1638–1655, Town Clerk 1655. Died June 1, 1673. Full genealogy published: Pierce, 1895.</div>
+      <div class="family-badge" style="background:#1f5c2a; color:#fff;">Great Migration 1635</div>
+    </div>
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:#1a3a6a"></span>Hooke</h3>
+      <div class="family-origin">Bristol, Gloucestershire, England → Salisbury MA (c.1610–1660s)</div>
+      <div class="family-note">Susanna Hooke, wife of Edward¹ Darby, likely connected to the Hooke family of Bristol, England. Humphrey Hooke of Bristol (c.1580s–1658) was a Member of Parliament and prominent Bristol merchant. His son William Hooke (c.1612–1652) emigrated to Salisbury, MA, became Governor of New Somerseshire. Published study: Frederick W. Todd, <em>Humphrey Hooke of Bristol and His Family and Descendants</em>.</div>
+      <div class="family-badge" style="background:#1a3a6a; color:#fff;">Edward¹'s Wife's Line</div>
+    </div>
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:#6a1a1a"></span>Podhaski</h3>
+      <div class="family-origin">Podhale Region, Southern Poland → Waterloo, Iowa</div>
+      <div class="family-note">Ella Podhaski, wife of Erwin Clarence⁹ Darby (married February 20, 1947, Waterloo, Iowa) carries a distinctly Polish toponymic surname. "Podhaski" derives from <em>Podhale</em> — the highland region near the Tatra Mountains in southern Poland, near Kraków. Her family likely arrived in Iowa during the Polish immigration wave of the 1880s–1910s. Research into Waterloo-area Polish parish records would reveal their village of origin.</div>
+      <div class="family-badge" style="background:#6a1a1a; color:#fff;">Erwin⁹'s Wife's Line</div>
+    </div>
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:#5a4a1a"></span>Tyler</h3>
+      <div class="family-origin">Connecticut (colonial era) → Cortland, NY</div>
+      <div class="family-note">Asenath Tyler, Joseph⁴ Darby's second wife (married September 20, 1807, Cortland, NY) "was born in Connecticut." Tyler is an English occupational surname (tile-maker). The Connecticut Tyler families are well-documented. Asenath's children with Joseph⁴ include Ann, Joseph Jr., Lucius Tyler, Chauncey (Baptist minister), Asenath, and Edwin — founding the other major branches of the Darby family in Cortland County.</div>
+      <div class="family-badge" style="background:#5a4a1a; color:#fff;">Joseph⁴'s Second Wife</div>
+    </div>
+
+    <div class="family-card">
+      <h3><span class="family-dot" style="background:#2a5a4a"></span>Salisbury</h3>
+      <div class="family-origin">Connecticut (colonial era) → Cortland, NY</div>
+      <div class="family-note">Cynthia Salisbury, wife of Lyman⁵ Darby (married December 12, 1823, Cortland, NY), is your ancestor Thomas⁵'s sister-in-law's line. The family document confirms the Salisbury line as one of the SAR-eligible threads. A Captain Abraham Salisbury is documented in Connecticut SAR records assisting Seth Warner's militia at Lake Champlain, July 1777. Cynthia's parents remain a research gap.</div>
+      <div class="family-badge" style="background:#2a5a4a; color:#fff;">Lyman⁵'s Wife's Line</div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ENGLAND -->
+<section id="england">
+<div class="section-inner">
+  <div class="sec-label">Pre-Colonial Origins</div>
+  <h2 class="sec-title">England & Beyond</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-intro">Before Massachusetts. Before Connecticut. Before Iowa. The Darby name traces to medieval Lincolnshire, and four distinct English families joined your bloodline between 1635 and 1700.</p>
+
+  <div class="england-grid">
+
+    <div class="england-card">
+      <h3>Darby Hall — Leake & Leverton, Lincolnshire</h3>
+      <div class="dates">c. 1200 – c. 1700</div>
+      <p>A large ancient building called <em>Darby Hall</em> stood as the family seat in Leake (partly Leverton), Lincolnshire for several centuries. The family were "considerable proprietors in this and the adjoining parishes," allied by marriage to the Dymocke family. Ralph Darby (1346), Thomas Darby (1346, 1353), Robert (1357), Roger of Leverton, Ralph of Leake (1517), Thomas of Bennington (1536–1544), William (1571), Thomas (1597–1659), Dymoke Darby (died Leake 1701). Memorials in Leake church chancel floor. The name likely derives from their proximity to the city of Derby, Derbyshire, itself named from Old Norse for "deer settlement."</p>
+    </div>
+
+    <div class="england-card blue">
+      <h3>Stepney & Limehouse, London — Ralph Shepard</h3>
+      <div class="dates">1606 – 1635 emigration</div>
+      <p>Ralph Shepard was born c.1606 in the Limehouse district of Stepney, Middlesex (London) — a neighborhood named for its lime kilns along the Thames. A tailor by profession, he was brought before the Court of High Commissions as a religious nonconformist on April 24, 1634. Faced with persecution, he married Thankslorde Perkins at St. Bride Fleet Street, London (May 21, 1632), then fled England June 30, 1635 aboard the ship <em>Abigail</em>. He was one of the founding settlers of Dedham, Massachusetts, signing the Dedham Covenant. He died 1693 in Malden, Massachusetts, aged c.87.</p>
+    </div>
+
+    <div class="england-card green">
+      <h3>Isleworth-on-Thames & Bowe Lane, London — John Whitney</h3>
+      <div class="dates">c.1589 – 1635 emigration</div>
+      <p>John Whitney Sr. was born c.1589 and lived first at Isleworth-on-Thames (8 miles upstream from Westminster) where his eldest children were christened. He later moved to Bowe Lane in the City of London, near St. Paul's Cathedral. A member of the Merchant Tailors' Company (London's most powerful trade guild), he enrolled his eldest son at the Merchant Tailors' School in 1631. In April 1635, he registered as a passenger on the ship <em>Elizabeth and Ann</em>, arriving in Watertown, Massachusetts in July 1635. He received 16 acres of homestead and held 198 additional acres by 1642. Town Clerk of Watertown until his death June 1, 1673. Full genealogy: Pierce, 1895 (free at Internet Archive).</p>
+    </div>
+
+    <div class="england-card" style="border-left-color:#8a6a2a;">
+      <h3>Bisley, Surrey, England — Edward Derby</h3>
+      <div class="dates">c.1625 – named in 1650 English will</div>
+      <p>Agnes Derby of Bisley, Surrey, England made a will (May 20, 1650, proved June 1, 1650) bequeathing money in trust to Henry Collier, "He to pay Edward Derby, in New England, ten pounds when he shall come and demand the same." Bisley is in Surrey, approximately 30 miles southwest of London. This is the strongest English document connecting your direct ancestor Edward¹ Darby to a specific English family and location. He is later confirmed in Boston records marrying Susanna Hooke January 25, 1658/59, and settling in Braintree, Massachusetts.</p>
+    </div>
+
+    <div class="england-card purple">
+      <h3>Bristol, Gloucestershire — Humphrey Hooke MP</h3>
+      <div class="dates">c.1580s – 1658</div>
+      <p>Humphrey Hooke of Bristol was a Member of Parliament and prominent Bristol merchant. His son William Hooke (c.1612–1652) emigrated to Salisbury, Massachusetts and became Governor of New Somerseshire (Province of Maine). William died in 1652, buried St. Stephens, Bristol — he had returned to England. Humphrey's will (June 25, 1658) names grandsons William, Jacob, and Josias, calling two of them "the most stubborn and unruly boys." Susanna Hooke who married Edward Derby in Boston five months later (January 1659) is the probable granddaughter or niece. Published: Frederick W. Todd, <em>Humphrey Hooke of Bristol and His Family and Descendants in England and America</em>.</p>
+    </div>
+
+    <div class="england-card blue">
+      <h3>Podhale Region, Southern Poland — Podhaski</h3>
+      <div class="dates">c.1880s–1910s immigration to Iowa</div>
+      <p>Ella Podhaski's surname is a toponymic Polish name meaning "from the Podhale" — the highland plateau at the foot of the Tatra Mountains in southern Poland, near Kraków, in the Małopolska (Lesser Poland) region. Polish immigration to the American Midwest concentrated in the 1880s–1910s, with many settling in industrial Iowa cities. Finding Ella's parents' village of origin in Poland would open a completely separate European genealogy in one of Central Europe's most historically rich regions — the Carpathian highlands where Polish, Slovak, and Ruthenian cultures meet.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- GRANDFATHER'S SIBLINGS — RELATIVES -->
+<section id="relatives">
+<div class="section-inner">
+  <div class="sec-label">Extended Family</div>
+  <h2 class="sec-title">Grandfather Erwin's Brothers & Sisters</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-intro">Erwin Clarence⁹ Darby (b. 1924, Plainfield, Iowa) was the son of Clarence Arthur⁸ and Katie Sutter. Here are his siblings — your great-uncles and great-aunt.</p>
+
+  <div class="relatives-grid">
+
+    <div class="rel-card">
+      <div class="rel-rel">Great-Grand-Uncle</div>
+      <div class="rel-name">David Lucius⁹ Darby</div>
+      <div class="rel-dates">b. March 26, 1919 — Nashua, Iowa</div>
+      <div class="rel-note">Married Geneva McCurly Howard. Son: Sandra Kay¹⁰ Darby, b. December 20, 1947.</div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rel-rel">Great-Grand-Uncle</div>
+      <div class="rel-name">Raymond Lyle⁹ Darby</div>
+      <div class="rel-dates">b. February 16, 1923 — Nashua, Iowa</div>
+      <div class="rel-note">Married Mary Frances Whipple (April 6, 1944, Anoka, MN). WWII veteran — Aviation Machinist, Flight Navigator, Mate 3rd Class, US Navy. Left Iowa farm 1956, became Railroad Conductor/Brakeman with ATSF RR California until retirement. Three children: Deanna Lee (b. March 12, 1945, d. March 28, 1945), Carolyn Rae (b. January 17, 1946, d. January 22, 1946), and Lynda Rae¹⁰ Darby (b. May 12, 1948, Charles City, Iowa).</div>
+    </div>
+
+    <div class="rel-card" style="border-color:var(--rust)">
+      <div class="rel-rel" style="color:var(--sepia)">Your Grandfather</div>
+      <div class="rel-name" style="color:var(--rust)">Erwin Clarence⁹ Darby</div>
+      <div class="rel-dates">b. January 17, 1924 — Plainfield, Iowa</div>
+      <div class="rel-note">Married Ella Podhaski, February 20, 1947, Waterloo, Iowa. Four children: Susan Marie¹⁰, Russell Clarence¹⁰, Kenneth Duane¹⁰ (your father), and Richard John (b. October 13, 1958, d. October 1, 1970). Source: Ella & Erwin Darby for all information/dates on their children and grandchildren.</div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rel-rel">Great-Grand-Uncle</div>
+      <div class="rel-name">LeRoy Charles⁹ Darby</div>
+      <div class="rel-dates">b. August 30, 1927 — Nashua, Iowa</div>
+      <div class="rel-note">Married Colleen Anne Obermeier, May 22, 1949, Charles City, Iowa. Three children: Cathleen Ann¹⁰ (b. May 20, 1952), Douglas Roy (b. May 8, 1954), Tricia Jean¹⁰ (b. December 4, 1969, Monona, Iowa). Source: Colleen & LeRoy Darby for all information on their children/grandchildren.</div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rel-rel">Great-Grand-Aunt</div>
+      <div class="rel-name">Ellen Lorraine Darby</div>
+      <div class="rel-dates">b. January 2, 1929 — Nashua, Iowa</div>
+      <div class="rel-note">Married Harold Roberts, December 30, 1951, Charles City, Iowa.</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:52px;">
+  <div class="sec-label">Lucius Edwin⁷'s Other Children</div>
+  <h3 style="font-family:'IM Fell English',serif; font-size:1.4rem; margin-bottom:8px;">Great-Grandfather Lucius Edwin's Siblings</h3>
+  <p style="font-size:0.88rem; color:var(--muted); margin-bottom:24px;">Lucius Edwin⁷ Darby (b. 1868, Clarksville, IA) had ten siblings. These are your great-great-grand-uncles and aunts — the other children of Thomas DeWight⁶ and Frances Bement Darby.</p>
+  <p style="font-size:0.84rem; color:var(--sepia); line-height:1.8;">
+  Lucius Edwin⁷ was the <em>only documented child</em> of Thomas DeWight⁶ and Frances Elizabeth Bement in the family record. Thomas DeWight⁶'s parents (Thomas⁵ and Urana M. Peck) had these other children who became your collateral relatives: <strong>Cordelia⁶</strong> (b. 1833), <strong>Nathan P. Darby</strong> (b. 1838, married Martha M. Mineah then Mary R. Francis — line continues in McLean, NY), <strong>Lucius Darby</strong> (b. 1845, d. August 4, 1865, Cortland, NY — Civil War era, died young).
+  </p>
+  </div>
+
+  <div style="margin-top:52px;">
+  <div class="sec-label">Notable Collateral Relatives</div>
+  <h3 style="font-family:'IM Fell English',serif; font-size:1.4rem; margin-bottom:24px;">Distinguished Names in the Family Tree</h3>
+  <div class="relatives-grid">
+    <div class="rel-card" style="border-left:3px solid var(--gold)">
+      <div class="rel-rel">Collateral — Grow Line</div>
+      <div class="rel-name">Galusha Aaron Grow</div>
+      <div class="rel-dates">b. August 31, 1823, Eastford, CT &nbsp;·&nbsp; d. March 31, 1907</div>
+      <div class="rel-note">24th Speaker of the U.S. House of Representatives (1861–63). Presided during the initial years of the Civil War. Championed and passed the landmark Homestead Act of 1862. Born on <em>Grow Hill</em> in Hampton, Connecticut — the same hill named for his family that Thomas Grow (Anna Grow Darby's father) settled in 1723. Descended from the same Thomas Grow as your ancestor Anna Grow.</div>
+    </div>
+    <div class="rel-card" style="border-left:3px solid var(--gold)">
+      <div class="rel-rel">Collateral — Shepard/Whitney Line</div>
+      <div class="rel-name">Eli Whitney</div>
+      <div class="rel-dates">b. December 8, 1765, Westborough, MA &nbsp;·&nbsp; d. January 8, 1825</div>
+      <div class="rel-note">Inventor of the cotton gin (1793) and pioneer of interchangeable parts manufacturing. Published genealogical records confirm Eli Whitney descends from Ralph Shepard (Limehouse/Stepney, London, 1635) — the same Ralph Shepard whose line flows through Eleanor Shepherd into your James² Darby. Eli Whitney is your distant collateral relative through the Shepard line.</div>
+    </div>
+    <div class="rel-card" style="border-left:3px solid var(--gold)">
+      <div class="rel-rel">Collateral — Darby Line / Edwin T.⁶ branch</div>
+      <div class="rel-name">Dr. Edwin T.⁶ Darby</div>
+      <div class="rel-dates">b. August 21, 1845 &nbsp;·&nbsp; Burial: Homer Old Cemetery</div>
+      <div class="rel-note">President of the American Dental Association on a National Level, 1893. Practiced in Lansdowne, Pennsylvania. Had a summer home on Skaneateles Lake. Invented the <em>Darby Tooth Scaler</em> and <em>Darby Tooth Powder</em>, both still in use by dentists today. Son of Chauncey⁵ Darby (your Joseph⁴'s son by second wife Asenath Tyler) — a collateral branch of your Darby tree.</div>
+    </div>
+    <div class="rel-card" style="border-left:3px solid var(--gold)">
+      <div class="rel-rel">Collateral — Chollar / Darby Pottery</div>
+      <div class="rel-name">Chollar & Darby Pottery</div>
+      <div class="rel-dates">Homer & Cortland, New York &nbsp;·&nbsp; c.1839–1844</div>
+      <div class="rel-note">Joseph Jr.⁵ Darby (your ancestor Thomas⁵'s half-brother) went into the pottery business with Thomas Chollar in 1839. Stoneware inscribed "Chollar & Darby" with the location (Homer NY or Cortland NY) is still found at antique auctions today. Joseph continued operating the pottery in Homer until c.1839, then sold to Madison Woodruff. "Chollar & Darby," "Madison Woodruff" — all traceable American antique ceramics.</div>
+    </div>
+  </div>
+  </div>
+</div>
+</section>
+
+<!-- SAR -->
+<section id="sar">
+<div class="section-inner">
+  <div class="sec-label" style="color:var(--gold)">Sons of the American Revolution</div>
+  <h2 class="sec-title light">SAR Eligibility</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-intro" style="color:#8a7060;">The family document explicitly confirms SAR eligibility: "Chester Chauncey Darby was eligible for membership in the Sons of the American Revolution through the Darby, Grow & Salisbury lines." Chester's eligibility flows through the same Joseph⁴ Darby as your direct line — meaning you share the same potential patriot ancestors. America's 250th anniversary is July 4, 2026.</p>
+
+  <div class="sar-grid">
+    <div class="sar-card">
+      <div class="sar-line">Line 1 — Primary</div>
+      <h3>The Grow Line</h3>
+      <p>Thomas Grow of Hampton, CT (Anna Grow's father, b. c.1740–50) was 25–45 during the Revolution. Hampton men marched through the night to respond to Lexington (April 1775). The town record: "all able-bodied men were away in their country's service." Thomas Grow is the prime research target — first check: DAR GRS free ancestor search at dar.org for "Grow" in Connecticut.</p>
+      <span class="sar-status research">Research Needed — High Confidence</span>
+    </div>
+    <div class="sar-card">
+      <div class="sar-line">Line 2 — Strong Candidate</div>
+      <h3>Eleazor³ Darby</h3>
+      <p>Your direct ancestor, born 1731, Canterbury CT. Ages 44–52 during the Revolution. Connecticut was "The Provisions State" — even farmers supplying goods or signing loyalty oaths qualified. Connecticut Archives (37 volumes, 1763–1789) at CT State Library are the primary search. Look for "Eleazor" or "Eleazer Darby" in Canterbury/Windham County records.</p>
+      <span class="sar-status research">Research Needed — Direct Line</span>
+    </div>
+    <div class="sar-card">
+      <div class="sar-line">Line 3 — Documented Puritan</div>
+      <h3>Shepard / Whitney Lines</h3>
+      <p>Ralph Shepard (1606, Limehouse London → Dedham MA 1635) and John Whitney (c.1589, Isleworth London → Watertown MA 1635) are documented Great Migration immigrants. Their descendants fought in the Revolution. Check if any SAR/DAR member has already verified Revolutionary War service for the Connecticut branches connecting to the Shepherd family.</p>
+      <span class="sar-status confirmed">Documented Immigrants</span>
+    </div>
+    <div class="sar-card">
+      <div class="sar-line">Line 4 — Family Document Confirmed</div>
+      <h3>Salisbury Line</h3>
+      <p>Cynthia Salisbury (Lyman⁵ Darby's wife) is the third line explicitly named in the family document's SAR eligibility note. A Captain Abraham Salisbury is documented in Connecticut SAR records assisting Seth Warner's militia at Lake Champlain, July 5, 1777 — the family and geography align. Cynthia's parents are the research gap to close.</p>
+      <span class="sar-status research">Confirmed Eligible (Family Record)</span>
+    </div>
+  </div>
+
+  <div style="margin-top:32px; background:rgba(184,134,11,0.08); border:1px solid rgba(184,134,11,0.2); border-radius:6px; padding:24px; max-width:600px;">
+    <p style="color:var(--gold2); font-size:0.85rem; line-height:1.7;"><strong style="font-family:'IM Fell English',serif; font-size:1rem; display:block; margin-bottom:6px;">Next Steps for SAR Application</strong>
+    1. Search DAR GRS at dar.org for "Grow" in Connecticut (free). 2. Search SAR Patriot Research System at sar.org. 3. Contact Iowa SAR chapter — they assign a chapter rep for free guidance. 4. Search CT State Library Revolutionary War archives (37 volumes) for "Darby" and "Grow" in Windham County. 5. Iowa SAR membership fee: approximately $255 as of 2025.</p>
+  </div>
+</div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+<div class="section-inner">
+  <div class="sec-label">Open Questions</div>
+  <h2 class="sec-title">Research Priorities</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-intro">What remains to discover. These are the documented gaps in the Darby family record, ordered by impact on extending the tree and confirming connections.</p>
+
+  <div class="research-list">
+    <div class="research-item">
+      <div class="research-num">1</div>
+      <div>
+        <h4>Thomas Grow's Parents — Hampton, CT Records</h4>
+        <p>Finding Thomas Grow's father closes the SAR Grow line. Search: Hampton CT Barbour Collection (FamilySearch, free). Hampton Town Records 1786–1856. Hampton First Congregational Church Records 1723–1858 and Hampton Baptist Church 1770–1853 — both at FamilySearch Digital Library.</p>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">2</div>
+      <div>
+        <h4>Eleazor³ Darby's Revolutionary War Service</h4>
+        <p>Connecticut State Library, 37 volumes of Revolutionary War records (1763–1789). Search Canterbury CT town records, militia rosters, and oath lists for "Eleazor" or "Eleazer Darby." Also: Jesse Darby (Eleazor's brother, ages ~38–45 during Revolution) — may also have service records.</p>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">3</div>
+      <div>
+        <h4>Edward¹ Darby's English Origin — Ship Passenger Records</h4>
+        <p>Agnes Derby's 1650 will (Bisley, Surrey) names "Edward Derby, in New England." Search: Surrey/Bisley parish records for Derby families c.1620–1650. London parish records for Stepney, Southwark, or Surrey — areas near Bisley's gentry connections. Port of London passenger lists 1640–1658. If Edward arrived 1630 (per one early record), check the 1630 Winthrop Fleet passenger lists.</p>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">4</div>
+      <div>
+        <h4>Ella Podhaski's Polish Village of Origin</h4>
+        <p>Iowa State Historical Society records; Waterloo, Iowa area Catholic/Orthodox parish records 1880s–1920s. Polish immigration records at Ellis Island (free at Ancestry/FamilySearch). Podhale region in southern Poland — specific villages include Nowy Targ, Zakopane, Bukowina Tatrzańska. Finding Ella's parents would open the Tatra Mountain highland genealogy.</p>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">5</div>
+      <div>
+        <h4>Susanna Hooke — Verify Hooke Family Connection</h4>
+        <p>Frederick W. Todd, <em>Humphrey Hooke of Bristol and His Family and Descendants in England and America During the Seventeenth Century</em> (available through NEHGS or Godfrey Memorial Library, Middletown CT). Verify whether Susanna Hooke who married Edward Derby appears as granddaughter, niece, or other relation of Humphrey Hooke MP of Bristol.</p>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">6</div>
+      <div>
+        <h4>Eleanor Whitney → Whitney Genealogy (1895 Pierce)</h4>
+        <p>John Whitney's 1895 genealogy by Frederick Clifton Pierce is free at Internet Archive (archive.org) and FamilySearch Digital Library. Find the Connecticut branch that produced Eleanor Whitney and her marriage to Samuel Shepherd. This also potentially opens a separate SAR application through the Whitney line's Revolutionary War descendants.</p>
+      </div>
+    </div>
+    <div class="research-item">
+      <div class="research-num">7</div>
+      <div>
+        <h4>Cynthia Salisbury's Parents — Cortland County, NY</h4>
+        <p>Cortland, NY 1820 federal census; Cortland County marriage records; New York state records 1780–1823. Finding Cynthia's father closes the Salisbury SAR line explicitly named in the family document. If she connects to Captain Abraham Salisbury (CT militia, Lake Champlain, 1777), that's a confirmed SAR patriot.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">The Darby Collective</div>
+  <div class="footer-sub">darbycollective.com &nbsp;·&nbsp; Family history since c.1200</div>
+  <div class="footer-links">
+    <a href="#lineage" class="footer-link">Direct Line</a>
+    <a href="#timeline" class="footer-link">Timeline</a>
+    <a href="#families" class="footer-link">Family Lines</a>
+    <a href="#england" class="footer-link">England Origins</a>
+    <a href="#relatives" class="footer-link">Relatives</a>
+    <a href="#sar" class="footer-link">SAR Eligibility</a>
+    <a href="#research" class="footer-link">Research</a>
+  </div>
+  <div class="footer-rule"></div>
+  <div class="footer-copy">
+    Compiled from family records, published genealogies, WikiTree, Geni.com, Connecticut Genealogy databases,<br>
+    Anderson Great Migration Series, Pierce Whitney Genealogy (1895), Derby Genealogy (Bromley, 1905),<br>
+    Todd Humphrey Hooke of Bristol, and Connecticut SAR Patriot Index. &nbsp;·&nbsp; Built by Vela Solved
+  </div>
+</footer>
+
+<script>
+// ── NAV BURGER ──
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-link').forEach(l => {
+  l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+// ── ACTIVE NAV ON SCROLL ──
+const sections = ['hero','lineage','timeline','families','england','relatives','sar','research'];
+window.addEventListener('scroll', () => {
+  const y = window.scrollY + 80;
+  let cur = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if(el && y >= el.offsetTop) cur = id;
+  });
+  document.querySelectorAll('.nav-link').forEach(l => {
+    const href = l.getAttribute('href').replace('#','');
+    l.classList.toggle('active', href === cur);
+  });
+}, {passive:true});
+
+// ── GEN CARD DETAILS ──
+const details = {
+  edward: {
+    name: 'Edward¹ Darby (Derby)',
+    gen: 'Generation 1 — Progenitor',
+    dates: 'b. c.1625–1635, England (Bisley, Surrey probable) · d. after 1669, Massachusetts',
+    content: `<p style="margin-bottom:10px;"><strong>The first American Darby.</strong> Agnes Derby of Bisley, Surrey, England left Edward Derby "in New England" ten pounds in her 1650 will — placing him in Massachusetts by 1650 at the latest, and connecting him to a Surrey/Bisley English family.</p>
+    <p style="margin-bottom:10px;">Boston vital records confirm: "Edward Derby was married to Susanna Hook, January 25, 1659, by Richard Bellingham, Deputy Governor." Bellingham was Governor of Massachusetts Bay Colony — a significant officiant suggesting family standing.</p>
+    <p>He settled in Braintree, Massachusetts, where daughter Mary was born December 29, 1660, and Priscilla, June 20, 1672. The 1905 <em>Derby Genealogy</em> (Bromley) discusses him at length, noting he "may be identical with the Edward Darby who, according to the Boston Records, was married to Susanna Hook."</p>`
+  },
+  james: {
+    name: 'James² Darby',
+    gen: 'Generation 2',
+    dates: 'b. April 30, 1702 — Dunstable, Essex (now Middlesex), Massachusetts · d. c.1786',
+    content: `<p style="margin-bottom:10px;">Born at Dunstable in Essex County, Massachusetts — a frontier settlement established in the 1670s, suggesting the family had pushed north from Boston. James later settled at <strong>Mortlake Society, Canterbury, Connecticut</strong> — "Mortlake" was the original name for a section near Pomfret CT, now known as Brooklyn CT. He is first recorded there in 1724.</p>
+    <p style="margin-bottom:10px;">He married <strong>Eleanor Shepherd</strong>, daughter of Samuel Shepherd and Eleanor Whitney — connecting the Darby line to Ralph Shepard (Puritan immigrant 1635, Limehouse London) and John Whitney (Puritan immigrant 1635, Isleworth London). Eli Whitney the cotton gin inventor also descends from this Shepard line.</p>
+    <p>The Darby, Payne, Chollar, Cleveland, Bennett, and Grow families knew each other in Canterbury CT and all migrated to New York together in the late 1700s–early 1800s after religious freedom was established.</p>`
+  },
+  eleazor: {
+    name: 'Eleazor³ Darby',
+    gen: 'Generation 3 — Direct Ancestor · SAR Candidate',
+    dates: 'b. July 6, 1731 — Canterbury (Mortlake Society), CT · d. January 31, 1813 — Cortland, NY (aged 81)',
+    content: `<p style="margin-bottom:10px;">Eleazor was 44–52 years old during the American Revolutionary War (1775–1783). He lived in Canterbury, Connecticut — an actively Patriot community that sent all its able-bodied men to the cause. Connecticut was known as "The Provisions State." Even non-military service (supplying food, signing loyalty oaths, holding local office) qualifies for SAR.</p>
+    <p style="margin-bottom:10px;">He married Ruth (surname uncertain; some sources note "Anna Doubledee"). He migrated to Cortland, New York around 1802 as part of the Canterbury Baptist community migration. He died January 31, 1813 in Cortland, aged 81. Buried: <strong>Cortland Old Burial Ground</strong>.</p>
+    <p>His son Joseph⁴ became Coroner of Cortland County. Eleazor is the <strong>prime direct-line SAR candidate</strong> — Connecticut Archives' 37 volumes of Revolutionary War records are the search target.</p>`
+  },
+  joseph: {
+    name: 'Joseph⁴ Darby',
+    gen: 'Generation 4',
+    dates: 'b. August 23, 1772 — Canterbury, CT · d. c.1836, Cortland County, NY (aged c.64)',
+    content: `<p style="margin-bottom:10px;">Joseph married <strong>Anna Grow</strong> (b. February 15, 1777, Hampton CT) in 1796 in Hampton. Anna was the daughter of Thomas Grow — whose family founded <em>Grow Hill</em> in Hampton CT in 1723. Anna had at least six sisters, four of whom married prominent Baptist men who all migrated together with the Darbys to Homer, New York. Anna died young, June 30, 1806, aged 29, leaving Delia, Lyman, and Thomas (your ancestor).</p>
+    <p style="margin-bottom:10px;">Joseph remarried <strong>Asenath Tyler</strong> (September 20, 1807, Cortland NY). They had six more children including Chauncey (Baptist minister) and Edwin. Joseph was elected <strong>Coroner of Cortland County</strong>, was a Whig, Anti-Mason, and active Baptist. He developed a farm "amidst a deep forest" in Homer with remarkable perseverance.</p>
+    <p>The family document confirms Joseph's descendants were eligible for SAR through the Darby, Grow, and Salisbury lines.</p>`
+  },
+  thomas5: {
+    name: 'Thomas⁵ Darby',
+    gen: 'Generation 5 — Direct Ancestor',
+    dates: 'b. March 1802 — Cortland, New York · d. February 22, 1883 — Cortland, New York (aged 81)',
+    content: `<p style="margin-bottom:10px;">Thomas was one of three children Anna Grow bore before her death in 1806. He married first <strong>Abigail Sumner</strong> (January 14, 1829), then <strong>Urana M. Peck</strong> (April 30, 1833, Cortland NY — daughter of Nathan Peck, ceremony by Rev. Nathan Peck).</p>
+    <p>Children with Abigail: Thomas D.⁶ (b. 1830, died age 9). Children with Urana: Cordelia, Urana A., Wayland, Nathan P., <strong>Thomas DeWight⁶ (your ancestor)</strong>, and Lucius. Thomas lived his entire 81 years in Cortland County, NY.</p>`
+  },
+  tdw: {
+    name: 'Thomas DeWight⁶ Darby',
+    gen: 'Generation 6 — First Iowa Generation',
+    dates: 'b. November 23, 1842 — Cortland, NY · d. August 30, 1900 — Clarksville, Iowa',
+    content: `<p style="margin-bottom:10px;"><strong>The first Darby in Iowa.</strong> Thomas DeWight married Frances Elizabeth Bement in 1864 in Cortland, NY (daughter of Julius Bement and Sarah Darling). He then migrated west to Clarksville, Butler County, Iowa — your family's first Iowa generation. He died August 30, 1900 and is buried at Lynwood Cemetery, Clarksville, Iowa.</p>
+    <p>His son Lucius Edwin⁷ (b. Portland NY, 1868) was born before the move west, carried the family line to Clarksville, and became a Plymouth Brethren lay minister and farmer — rooting the Darby name in Butler County, Iowa for generations.</p>`
+  },
+  le: {
+    name: 'Lucius Edwin⁷ Darby',
+    gen: 'Generation 7',
+    dates: 'b. March 26, 1868 — Portland, NY · d. July 1, 1943 — Clarksville, Iowa',
+    content: `<p style="margin-bottom:10px;">Lucius Edwin married <strong>"Amy" Mary Amy Scott</strong> on December 4, 1888 in Clarksville, Iowa (daughter of Isaac Scott and Sarah Philippi). She died November 11, 1942. He was a <strong>Plymouth Brethren Lay Minister</strong> and farmer. Buried Lynwood Cemetery, Clarksville, Iowa, July 5, 1943.</p>
+    <p>They had eleven children — Ruth Elizabeth (schoolteacher), Clarence Arthur⁸ (your ancestor), David Edwin, "Marie" Eliza Marie, Lyle DeWight, "Irene" Mabel Irene, "Celia" Cecelia Emmaline, "Fannie" Sarah Frances, Lillith Mary, "Lucille" Amy Lucille, and "Mervin" Lucius Mervin. A remarkably large family spanning 1890–1911.</p>`
+  },
+  ca: {
+    name: 'Clarence Arthur⁸ Darby',
+    gen: 'Generation 8',
+    dates: 'b. July 7, 1896 — Clarksville, Iowa · d. August 28, 1985 — Nashua, Iowa',
+    content: `<p style="margin-bottom:10px;">Clarence Arthur married <strong>Katie Sutter</strong> on May 10, 1917 in Charles City, Iowa. Katie — originally named Katrina Maria by her mother but with no birth certificate (born at home) — legally chose the name "Katie Darby," what she was always called. Baptist. Farmer. Buried Oak Hill Cemetery, Nashua, Iowa, August 31, 1985.</p>
+    <p>Five children: David Lucius⁹, Raymond Lyle⁹, <strong>Erwin Clarence⁹ (your grandfather)</strong>, LeRoy Charles⁹, and Ellen Lorraine.</p>`
+  },
+  ec: {
+    name: 'Erwin Clarence⁹ Darby',
+    gen: 'Generation 9 — Your Grandfather',
+    dates: 'b. January 17, 1924 — Plainfield, Iowa',
+    content: `<p style="margin-bottom:10px;">Erwin Clarence married <strong>Ella Podhaski</strong> on February 20, 1947, Waterloo, Iowa. Ella's surname is Polish — "Podhaski" derives from the Podhale region of southern Poland (Tatra Mountains, near Kraków). She likely descends from Polish immigrants who came to Iowa in the 1880s–1910s.</p>
+    <p>Four children: Susan Marie¹⁰, Russell Clarence¹⁰, <strong>Kenneth Duane¹⁰ (your father)</strong>, and Richard John Darby (b. October 13, 1958; d. October 1, 1970, Waterloo — buried Cedar Crest Cemetery, Jesup, Iowa).</p>`
+  },
+  kd: {
+    name: 'Kenneth Duane¹⁰ Darby',
+    gen: 'Generation 10 — Your Father',
+    dates: 'b. October 9, 1955 — Waterloo, Iowa',
+    content: `<p style="margin-bottom:10px;">Kenneth Duane married <strong>Cynthia Jean Steinbron</strong> on March 18, 1978 in Waterloo, Iowa. Three children: Jessica Lyn¹¹ (b. August 23, 1981), Kala Elizabeth (b. October 16, 1984), and <strong>Jacob Richard (b. September 12, 1987 — you)</strong>.</p>
+    <p>He married second <strong>Christine Ann Dwyer</strong> on July 23, 1998 in Jamaica. Stepchildren: Conrad John Marsh (b. March 17, 1982) and Casey David Marsh (b. May 25, 1985).</p>`
+  },
+  jacob: {
+    name: 'Jacob Richard¹¹ Darby',
+    gen: 'Generation 11 — You',
+    dates: 'b. September 12, 1987 — Waterloo, Iowa',
+    content: `<p style="margin-bottom:10px;"><strong>11th documented American generation</strong> of the Darby name, and 13th+ generation from English roots. West Branch, Iowa.</p>
+    <p style="margin-bottom:10px;"><strong>Full direct lineage:</strong> Edward¹ (Boston, 1658) → James² (Dunstable MA 1702) → Eleazor³ (Canterbury CT 1731) → Joseph⁴ (Canterbury CT 1772) → Thomas⁵ (Cortland NY 1802) → Thomas DeWight⁶ (Cortland NY 1842) → Lucius Edwin⁷ (Portland NY 1868) → Clarence Arthur⁸ (Clarksville IA 1896) → Erwin Clarence⁹ (Plainfield IA 1924) → Kenneth Duane¹⁰ (Waterloo IA 1955) → Jacob Richard¹¹</p>
+    <p>Heritage: English (Darby/Lincolnshire, Shepard/London, Whitney/London, Hooke/Bristol), Germanic/Dutch (Grow/Groh), and Polish (Podhaski/Podhale-Tatra highlands). Carries at least four documented Puritan Great Migration family lines. Likely eligible for SAR membership through multiple confirmed lines.</p>`
+  }
+};
+
+function showDetail(id) {
+  const d = details[id];
+  if(!d) return;
+  const panel = document.getElementById('detail-panel');
+  const content = document.getElementById('detail-content');
+  content.innerHTML = `
+    <div style="font-size:0.65rem;font-family:sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">${d.gen}</div>
+    <h3 style="font-family:'IM Fell English',serif;font-size:1.4rem;margin-bottom:4px;">${d.name}</h3>
+    <div style="font-size:0.82rem;color:var(--muted);font-style:italic;margin-bottom:16px;">${d.dates}</div>
+    <div style="font-size:0.88rem;color:var(--sepia);line-height:1.7;">${d.content}</div>
+    <button onclick="document.getElementById('detail-panel').style.display='none'" style="margin-top:16px;background:none;border:1px solid var(--rule);padding:6px 14px;border-radius:3px;font-size:0.72rem;cursor:pointer;color:var(--muted);">Close</button>
+  `;
+  panel.style.display = 'block';
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+</script>
+</body>
+</html>
