@@ -340,18 +340,11 @@ nav{
     <div class="stat"><div class="stat-n">12</div><div class="stat-l">Generations</div></div>
     <div class="stat"><div class="stat-n">1648</div><div class="stat-l">First Arrival</div></div>
     <div class="stat"><div class="stat-n">376</div><div class="stat-l">Years in America</div></div>
-    <div class="stat"><div class="stat-n">13</div><div class="stat-l">Source Documents</div></div>
+    
   </div>
 </div>
 
-<!-- PHOTOS -->
-<section id="photos" class="section">
-  <div class="section-header">
-    <h2>Original Genealogy Documents</h2>
-    <p>13 pages &middot; Primary source record &middot; Click any page to enlarge</p>
-  </div>
-  <div class="photo-grid" id="photoGrid"></div>
-</section>
+
 
 <!-- CONTROLS -->
 <div class="controls">
@@ -374,19 +367,7 @@ nav{
 <!-- TREE -->
 <div class="tree-outer" id="treeRoot"></div>
 
-<!-- LIGHTBOX -->
-<div class="lb-overlay" id="lbOverlay" onclick="lbClickOverlay(event)">
-  <button class="lb-close" onclick="closeLb()">&times;</button>
-  <div class="lb-img-wrap">
-    <img id="lbImg" src="" alt="">
-  </div>
-  <div class="lb-caption" id="lbCaption"></div>
-  <div class="lb-nav">
-    <button class="lb-btn" onclick="lbPrev()">&#8592;</button>
-    <span class="lb-counter" id="lbCounter"></span>
-    <button class="lb-btn" onclick="lbNext()">&#8594;</button>
-  </div>
-</div>
+
 
 <!-- DETAIL PANEL -->
 <div class="dp-overlay" id="dpOverlay" onclick="closeDetail()"></div>
@@ -404,74 +385,6 @@ nav{
 </footer>
 
 <script>
-// ─────────────────────────────────────────────────────────────────
-// PHOTOS DATA
-// ─────────────────────────────────────────────────────────────────
-const PHOTOS = [
-  { src:'images/family-photos/page-01.jpg', title:'Page 1: Edward & John Darby', caption:'Family note: "Given the marriage of Edward & Susannah Hooke in 1659 & James birth in 1702... James is the grandchild", confirms John² as the missing generation. Edward¹ Derby, Bisley Surrey  to  New England c.1648-1650.' },
-  { src:'images/family-photos/page-02.jpg', title:'Page 2: James & Eleazor Darby', caption:'James³ Darby (b. Apr 30, 1702, Dunstable MA) + Eleanor Shepard. Eleazor⁴ Darby (b. Jul 6, 1731, Canterbury CT; d. Jan 31, 1813, Homer NY). Wife: Anna Doubleday, predeceased move to New York.' },
-  { src:'images/family-photos/page-03.jpg', title:'Page 3: Joseph Darby + Two Wives', caption:'Joseph⁵ Darby (b. 1774; d. March 22, 1825, Homer NY). Married (1) Anna Grow 1796 Hampton CT; (2) Asenath Tyler Sept 20, 1807 in Cortland. Religion: Homer 1st Baptist Church.' },
-  { src:'images/family-photos/page-04.jpg', title:'Page 4: Lyman Darby Family', caption:'Lyman⁶ Darby (b. 1800; d. Nov 09, 1878 Cortland NY). Married Cynthia Salisbury Dec 12, 1823 Cortland NY. 9 children. Baptism: 1820 by Rev Alfred Bennett at Homer Baptist Church. Shares headstone with William H. Darby at Homer Old Cemetery.' },
-  { src:'images/family-photos/page-05.jpg', title:'Page 5: Children of Lyman & Cynthia', caption:'Children of Lyman Darby + Cynthia Salisbury: Unknown (b.1824), Unknown (b.1826), Julia (b.1828), Lyman Jr. (b.1829), Orrisa (b.1832), Ellen (b.1834, teacher), George (b.1836), Eliza (b.1839), William Henry Darby (b. Mar 23, 1841, d. Nov 19, 1906).' },
-  { src:'images/family-photos/page-06.jpg', title:'Page 6: Thomas Darby Sr. + First Marriage', caption:'Thomas⁶ Darby (b. Mar 1802, d. Feb 22, 1883). First marriage: Abigail Sumner Jan 14, 1829 by Rev John Keep per Cortland Register. Rev Nathan Peck performed the marriage of Thomas and Urana Peck per Cortland Marriage Register.' },
-  { src:'images/family-photos/page-07.jpg', title:'Page 7: Children of Thomas & Urana', caption:'Children of Thomas Darby + Urana Peck: Cordelia (b.1833), Urana A. (b. May 3, 1835; d. Feb 12, 1838 aged 2yr 8mo), Wayland D. (b. May 3, 1835; d. Jan 21, 1874 Clarksville IA), Nathan P. (b.1838, d.1916 McLean NY), Thomas DeWight (b. Nov 23, 1842 Cortland NY), Lucius (b.1845; d. Aug 4, 1865 Cortland NY).' },
-  { src:'images/family-photos/page-08.jpg', title:'Page 8: Thomas DeWight Darby', caption:'Thomas DeWight⁷ Darby (b. Nov 23, 1842 Cortland NY; d. Aug 30, 1900 Clarksville IA). Source: Obituary Clarksville Star 9/6/1900. Married Frances Elizabeth Bement 1865. The only child of Thomas & Frances: Lucius Edwin Darby.' },
-  { src:'images/family-photos/page-09.jpg', title:'Page 9: Lucius Edwin Darby', caption:'Lucius Edwin⁸ Darby (b. Mar 26, 1868 Cortland NY; d. Jul 01, 1943 Clarksville IA). Married Amy Scott Dec 04, 1888, Clarksville IA, daughter of Isaac Scott and Sarah Philippi. Farmer. Plymouth Brethren (Lay Minister). 11 children named on this page.' },
-  { src:'images/family-photos/page-10.jpg', title:'Page 10: All 11 Children of Lucius', caption:'All 11 children: "Fannie" Darby (b.1890), Ruth Elizabeth (b.1894), Clarence Arthur (b. Jul 7, 1896), David Edwin (b.1898), "Marie" Eliza (b.1900), Lyle DeWight (b.1902), "Irene" Mabel (b.1903), "Celia" Cecelia (b.1905), "Mervin" Lucius (b.1906), "Lucille" Amy (b.1911).' },
-  { src:'images/family-photos/page-11.jpg', title:'Page 11: Clarence Arthur Darby + Katie Sutter', caption:'Clarence Arthur⁹ Darby (b. Jul 07, 1896 Clarksville; d. Aug 28, 1985 Nashua). Married Katie Sutter May 10, 1917 Charles City Iowa. "Grandma Katie Darby said her mother named her Katrina Maria, but... she picked Katie." Oak Hill Cemetery Nashua Iowa. Baptist farmer.' },
-  { src:'images/family-photos/page-12.jpg', title:'Page 12: Children of Clarence & Katie', caption:'Children: David Lucius (b. Mar 26, 1919), Raymond Lyle (b. Feb 16, 1923), Erwin Clarence (b. Jan 17, 1924 Plainfield Iowa), LeRoy Charles (b. Aug 30, 1927), Ellen Lorraine Darby (b. Jan 02, 1929). Source: Ella & Erwin Darby for all info on children & grandchildren.' },
-  { src:'images/family-photos/page-13.jpg', title:'Page 13: Erwin, Kenneth & Jacob Darby', caption:'Erwin Clarence¹⁰ Darby (b. Jan 17, 1924 Plainfield IA; m. Ella Podhaski Feb 20, 1947 Waterloo IA). Children: Susan Marie (b.1952), Russell Clarence (b.1953), Kenneth Duane (b. Oct 09, 1955 Waterloo IA). Kenneth m. Cynthia Jean Steinbron Mar 18, 1978. Children: Jessica Lyn (b.1981), Kala Elizabeth (b.1984), Jacob Richard (b. Sep 12, 1987).' },
-];
-
-// ─────────────────────────────────────────────────────────────────
-// RENDER PHOTOS
-// ─────────────────────────────────────────────────────────────────
-function renderPhotos() {
-  const grid = document.getElementById('photoGrid');
-  PHOTOS.forEach((p, i) => {
-    const div = document.createElement('div');
-    div.className = 'photo-thumb';
-    div.onclick = () => openLb(i);
-    div.innerHTML = `
-      <img src="${p.src}" alt="${p.title}" loading="lazy">
-      <div class="photo-caption"><strong>${p.title}</strong>${p.caption.substring(0,70)}...</div>
-    `;
-    grid.appendChild(div);
-  });
-}
-
-// ─────────────────────────────────────────────────────────────────
-// LIGHTBOX
-// ─────────────────────────────────────────────────────────────────
-let lbIdx = 0;
-function openLb(i) {
-  lbIdx = i;
-  updateLb();
-  document.getElementById('lbOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLb() {
-  document.getElementById('lbOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function updateLb() {
-  const p = PHOTOS[lbIdx];
-  document.getElementById('lbImg').src = p.src;
-  document.getElementById('lbImg').alt = p.title;
-  document.getElementById('lbCounter').textContent = `${lbIdx+1} / ${PHOTOS.length}`;
-  document.getElementById('lbCaption').innerHTML = `<strong>${p.title}</strong><br>${p.caption}`;
-}
-function lbPrev() { lbIdx = (lbIdx - 1 + PHOTOS.length) % PHOTOS.length; updateLb(); }
-function lbNext() { lbIdx = (lbIdx + 1) % PHOTOS.length; updateLb(); }
-function lbClickOverlay(e) { if (e.target === document.getElementById('lbOverlay')) closeLb(); }
-document.addEventListener('keydown', e => {
-  if (document.getElementById('lbOverlay').classList.contains('open')) {
-    if (e.key === 'Escape') closeLb();
-    if (e.key === 'ArrowLeft') lbPrev();
-    if (e.key === 'ArrowRight') lbNext();
-  }
-});
-
 // ─────────────────────────────────────────────────────────────────
 // FAMILY DATA
 // ─────────────────────────────────────────────────────────────────
@@ -762,7 +675,6 @@ document.addEventListener('keydown',e=>{
 // ─────────────────────────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────────────────────────
-renderPhotos();
 renderTree();
 </script>
 </body>
