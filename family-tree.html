@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darby Family Tree | The Darby Collective</title>
+<meta name="description" content="Interactive family tree of the Darby family — 12 generations from Bisley, Surrey, England to West Branch, Iowa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1c3a5c;
+    --navy-dark: #152d47;
+    --burg: #7a1525;
+    --gold: #b8973a;
+    --gold-light: #d4b86a;
+    --parch: #f7f3ec;
+    --ink: #1a1a1a;
+    --body: #3a3a3a;
+    --muted: #888;
+    --line: #d4c9b0;
+    --card: #ffffff;
+    --female: #5a2d6e;
+    --shadow: 0 2px 12px rgba(28,58,92,.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--parch);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    padding: 0 24px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .logo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: .02em;
+  }
+  .site-header .logo span { color: var(--gold); }
+  .back-link {
+    font-size: .8rem;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--gold); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    color: #fff;
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 200 L100 80 L160 200 Z' fill='none' stroke='rgba(184,151,58,.15)' stroke-width='2'/%3E%3Ccircle cx='65' cy='155' r='18' fill='none' stroke='rgba(184,151,58,.12)' stroke-width='2'/%3E%3Ccircle cx='135' cy='155' r='18' fill='none' stroke='rgba(184,151,58,.12)' stroke-width='2'/%3E%3Ccircle cx='100' cy='115' r='18' fill='none' stroke='rgba(184,151,58,.12)' stroke-width='2'/%3E%3C/svg%3E") center/400px repeat;
+    opacity: .4;
+  }
+  .page-header h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    position: relative;
+  }
+  .page-header h1 span { color: var(--gold); }
+  .page-header p {
+    font-size: .9rem;
+    color: rgba(255,255,255,.7);
+    margin-top: 8px;
+    position: relative;
+  }
+  .gen-count { color: var(--gold-light); font-weight: 600; }
+
+  /* ── FILTER CONTROLS ── */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+  .controls label { font-size: .8rem; color: var(--muted); white-space: nowrap; font-weight: 500; }
+  .filter-btn {
+    padding: 5px 12px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: #fff;
+    font-size: .78rem;
+    cursor: pointer;
+    color: var(--body);
+    transition: all .2s;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+  }
+  .filter-btn.active-burg { background: var(--burg); color: #fff; border-color: var(--burg); }
+  .legend { margin-left: auto; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: .75rem; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ── TREE WRAPPER ── */
+  .tree-outer {
+    padding: 32px 16px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  /* ── GENERATION ROW ── */
+  .gen-row {
+    display: none;
+    margin-bottom: 8px;
+  }
+  .gen-row.visible { display: block; }
+  .gen-label {
+    font-size: .7rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gen-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ── PERSON GROUP (person + spouse + children) ── */
+  .person-group {
+    margin-bottom: 20px;
+  }
+
+  /* ── PERSON ROW (direct + spouses) ── */
+  .person-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  /* ── PERSON CARD ── */
+  .person-card {
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 220px;
+    min-width: 200px;
+    box-shadow: var(--shadow);
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .person-card:hover {
+    box-shadow: 0 4px 20px rgba(28,58,92,.18);
+    transform: translateY(-1px);
+  }
+  .person-card.direct {
+    border-left: 4px solid var(--navy);
+  }
+  .person-card.spouse {
+    border-left: 4px solid var(--female);
+    background: #fdf9ff;
+  }
+  .person-card.collateral {
+    border-left: 4px solid var(--burg);
+    opacity: .85;
+  }
+
+  .person-name {
+    font-family: 'Lora', serif;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .person-card.spouse .person-name { color: var(--female); }
+  .person-card.collateral .person-name { color: var(--burg); }
+
+  .person-dates {
+    font-size: .75rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .person-place {
+    font-size: .73rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .person-note {
+    font-size: .72rem;
+    color: var(--body);
+    line-height: 1.5;
+    border-top: 1px solid var(--line);
+    padding-top: 6px;
+    margin-top: 2px;
+  }
+
+  /* ── MARRIAGE CONNECTOR ── */
+  .marriage-connector {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    color: var(--gold);
+    font-size: .8rem;
+    font-weight: 600;
+    align-self: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .marriage-date {
+    font-size: .65rem;
+    color: var(--muted);
+    display: block;
+    text-align: center;
+  }
+
+  /* ── CHILDREN BLOCK ── */
+  .children-block {
+    display: none;
+    margin-top: 10px;
+    margin-left: 24px;
+    padding-left: 20px;
+    border-left: 2px dashed var(--line);
+  }
+  .children-block.open { display: block; }
+  .children-label {
+    font-size: .7rem;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .child-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .child-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    min-width: 160px;
+    max-width: 200px;
+    font-size: .78rem;
+  }
+  .child-card .c-name {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: .83rem;
+    margin-bottom: 2px;
+  }
+  .child-card.child-direct { border-left: 3px solid var(--navy); }
+  .child-card.child-coll { border-left: 3px solid var(--burg); }
+  .child-card .c-dates { font-size: .7rem; color: var(--muted); }
+  .child-card .c-note { font-size: .7rem; color: var(--body); margin-top: 3px; }
+
+  .expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .72rem;
+    color: var(--navy);
+    background: none;
+    border: 1px solid var(--navy);
+    border-radius: 12px;
+    padding: 3px 10px;
+    cursor: pointer;
+    margin-top: 8px;
+    font-family: 'Inter', sans-serif;
+    transition: all .2s;
+  }
+  .expand-btn:hover { background: var(--navy); color: #fff; }
+  .expand-btn .arrow { transition: transform .2s; }
+  .expand-btn.open .arrow { transform: rotate(180deg); }
+
+  /* ── DETAIL PANEL ── */
+  .detail-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 200;
+    animation: fadeIn .2s;
+  }
+  .detail-overlay.open { display: block; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .detail-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(400px, 100vw);
+    background: #fff;
+    z-index: 201;
+    overflow-y: auto;
+    box-shadow: -4px 0 24px rgba(0,0,0,.15);
+    transform: translateX(100%);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .detail-panel.open { transform: translateX(0); }
+
+  .detail-header {
+    background: var(--navy);
+    padding: 20px 20px 16px;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .detail-header .dh-name {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .detail-header .dh-gen { font-size: .75rem; color: rgba(255,255,255,.6); }
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,.7);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .close-btn:hover { color: #fff; }
+
+  .detail-body { padding: 20px; }
+  .detail-section { margin-bottom: 20px; }
+  .detail-section h4 {
+    font-size: .72rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+  }
+  .detail-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: .85rem; }
+  .detail-row .dr-label { color: var(--muted); min-width: 80px; font-size: .8rem; }
+  .detail-row .dr-value { color: var(--ink); line-height: 1.5; }
+  .detail-note { font-size: .83rem; color: var(--body); line-height: 1.65; background: #f8f5f0; border-radius: 6px; padding: 12px; }
+  .spouse-block { background: #fdf9ff; border: 1px solid #e8d8f0; border-radius: 8px; padding: 12px; margin-bottom: 8px; }
+  .spouse-block .sb-name { font-family: 'Lora', serif; font-weight: 600; color: var(--female); font-size: .95rem; }
+  .spouse-block .sb-detail { font-size: .8rem; color: var(--body); margin-top: 4px; line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .tree-footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: .78rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    background: #fff;
+  }
+  .tree-footer a { color: var(--navy); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .person-card { width: 100%; min-width: unset; }
+    .person-row { gap: 0; flex-direction: column; }
+    .marriage-connector { padding: 6px 0; transform: rotate(90deg); }
+    .child-cards { gap: 6px; }
+    .child-card { min-width: calc(50% - 6px); }
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    position: relative;
+    margin-left: 0;
+  }
+  .search-input {
+    padding: 6px 12px 6px 32px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    font-size: .8rem;
+    color: var(--ink);
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 10px center;
+    width: 160px;
+    font-family: 'Inter', sans-serif;
+  }
+  .search-input:focus { outline: none; border-color: var(--navy); width: 200px; }
+
+  .highlight { background: #fff3b0; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" class="logo">The Darby <span>Collective</span></a>
+  <a href="index.html" class="back-link">&#8592; Back to main site</a>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <h1>The Darby <span>Family Tree</span></h1>
+  <p><span class="gen-count">12 generations</span> in America &middot; From Bisley, Surrey, England to West Branch, Iowa &middot; 1648 to present</p>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <label>Show:</label>
+  <button class="filter-btn active" onclick="showAll()">All Generations</button>
+  <button class="filter-btn" onclick="showDirect()">Direct Line Only</button>
+  <button class="filter-btn" onclick="showGen(1,4)">Gens 1&ndash;4</button>
+  <button class="filter-btn" onclick="showGen(5,8)">Gens 5&ndash;8</button>
+  <button class="filter-btn" onclick="showGen(9,12)">Gens 9&ndash;12</button>
+  <div class="search-wrap">
+    <input type="text" class="search-input" placeholder="Search name..." oninput="searchTree(this.value)" id="searchInput">
+  </div>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:var(--navy)"></span>Direct line</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--female)"></span>Spouse</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--burg)"></span>Collateral</span>
+  </div>
+</div>
+
+<!-- TREE -->
+<div class="tree-outer" id="treeRoot"></div>
+
+<!-- DETAIL OVERLAY -->
+<div class="detail-overlay" id="overlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detailPanel">
+  <div class="detail-header">
+    <div class="dh-name" id="dpName"></div>
+    <div class="dh-gen" id="dpGen"></div>
+    <button class="close-btn" onclick="closeDetail()">&times;</button>
+  </div>
+  <div class="detail-body" id="dpBody"></div>
+</div>
+
+<footer class="tree-footer">
+  <p>Darby Family Tree &middot; <a href="index.html">The Darby Collective</a> &middot; Updated 2026 &middot; All findings confirmed in primary sources where noted</p>
+</footer>
+
+<script>
+// ──────────────────────────────────────────────────────────────────
+// FAMILY DATA
+// ──────────────────────────────────────────────────────────────────
+const PEOPLE = {
+
+  // ─── GEN 1 ───
+  "edward1": {
+    id: "edward1", gen: 1, type: "direct",
+    name: "Edward¹ Derby",
+    born: "c.1625", died: "Jan 6, 1724",
+    birthplace: "Bisley, Surrey, England",
+    deathplace: "Weymouth, MA (age ~90)",
+    spouses: [{ id: "susanna_hooke", name: "Susanna Hooke", when: "Jan 25, 1659" }],
+    children: ["john2","sarah_cobb","jonathan_darby","jane_blanchard","ruth_shaw"],
+    note: "First American Darby. Agnes Derby's 1650 will (Bisley, Surrey) confirms 'Edward Derby, in New England.' Probable father: Augustine Derby of Bisley, Surrey (d. before 1650). Arms: Argent, a chevron sable between three garbs sable banded or — matching the ancient Lincolnshire Darby family documented from c.1200."
+  },
+  "susanna_hooke": {
+    id: "susanna_hooke", gen: 1, type: "spouse",
+    name: "Susanna Hooke",
+    born: "c.1640", died: "after 1688",
+    birthplace: "England",
+    deathplace: "Weymouth or Boston, MA",
+    note: "Daughter of Humphrey Hooke (Alderman, Bristol/Chichester). Married Edward Derby January 25, 1659 in Boston by Richard Bellingham, Deputy Governor. Children baptized in Boston and Weymouth."
+  },
+
+  // ─── GEN 2 ───
+  "john2": {
+    id: "john2", gen: 2, type: "direct",
+    name: "John² Darby",
+    born: "bapt. Dec 8, 1672",
+    died: "Jun 25, 1725",
+    birthplace: "Massachusetts Bay",
+    deathplace: "Groton, Middlesex, MA",
+    spouses: [{ id: "mary_blanchard", name: "Mary Blanchard", when: "c.1696" }],
+    children: ["james3","oliver_darby"],
+    note: "Baptized Massachusetts Bay per Thwing Collection (Boston). Settled at Dunstable, MA c.1696 where he received land grants from the proprietors. Later removed to Groton. Known as 'Derbyshire' in some Groton records. Confirmed son of Edward¹ in Hudson-Mohawk Genealogical Memoirs."
+  },
+  "mary_blanchard": {
+    id: "mary_blanchard", gen: 2, type: "spouse",
+    name: "Mary Blanchard",
+    born: "c.1674", died: "after 1725",
+    birthplace: "Dunstable, MA",
+    note: "Daughter of Deacon John Blanchard (b. c.1625 London; d. April 1697 Dunstable) + Hannah Brackett (b. 1634 Braintree MA; killed July 3, 1706 in Dunstable Indian raid, along with Mary's twin brother Nathaniel Blanchard). Great-granddaughter of Thomas Blanchard (b. c.1590, Goodworth Clatford, Hampshire; arrived ship Jonathan, Boston, June 23, 1639)."
+  },
+
+  // ─── GEN 3 ───
+  "james3": {
+    id: "james3", gen: 3, type: "direct",
+    name: "James³ Darby",
+    born: "Apr 30, 1702", died: "c.1786",
+    birthplace: "Dunstable, MA",
+    deathplace: "Canterbury, Windham Co., CT",
+    spouses: [{ id: "eleanor_shepard", name: "Eleanor Shepard", when: "c.1725" }],
+    children: ["eleazor4","jesse_darby","patience_darby","elizabeth_darby"],
+    note: "Second son of John² and Mary Blanchard. Born at Dunstable, Massachusetts. Settled at Canterbury, Windham County, Connecticut with the Mortlake Society Baptist community. Per Hudson-Mohawk Genealogical Memoirs."
+  },
+  "eleanor_shepard": {
+    id: "eleanor_shepard", gen: 3, type: "spouse",
+    name: "Eleanor Shepard",
+    born: "c.1701", died: "before 1786",
+    birthplace: "England or New England",
+    note: "Daughter of Samuel Shepard (son of Ralph Shepard, Limehouse Stepney London, arr. 1635) and Eleanor Whitney (daughter of John Whitney, Isleworth, Middlesex, arr. Watertown MA 1635). She was granddaughter of BOTH Ralph Shepard AND John Whitney simultaneously. Resolved by Hudson-Mohawk Genealogical Memoirs: 'daughter of Samuel Shepard and Eleanor Whitney, her first ancestors in this country being Ralph Shepard, John Whitney, Baptist Smedley and Thomas Tarbell.'"
+  },
+
+  // ─── GEN 4 ───
+  "eleazor4": {
+    id: "eleazor4", gen: 4, type: "direct",
+    name: "Eleazor⁴ Darby",
+    born: "Jul 6, 1731", died: "Jan 31, 1813",
+    birthplace: "Canterbury, Windham Co., CT",
+    deathplace: "Homer, Cortland Co., NY",
+    spouses: [{ id: "anna_doubleday", name: "Anna Doubleday", when: "c.1755" }],
+    children: ["joseph5","and_siblings_eleazor"],
+    note: "Born Canterbury CT; died Homer NY aged 81. His wife Anna Doubleday predeceased the family's move to New York. Eleazor is buried at the edge of the Darby family farm cemetery on East River Road, Homer NY (Find a Grave #123950156), with the John Keep Barns visible from his headstone. His son Joseph Darby is buried at center with two trees carved on the stone."
+  },
+  "anna_doubleday": {
+    id: "anna_doubleday", gen: 4, type: "spouse",
+    name: "Anna Doubleday",
+    born: "c.1735", died: "before 1802",
+    birthplace: "Connecticut (likely)",
+    note: "Wife of Eleazor⁴ Darby. Her Doubleday surname was preserved in grandson Wayland Doubleday Darby — three generations of family memory. She predeceased the family's move from Canterbury CT to Homer NY around 1802. Her parentage and English origin are entirely unknown — a confirmed research gap."
+  },
+
+  // ─── GEN 4 collateral ───
+  "oliver_darby": { id: "oliver_darby", gen: 2, type: "collateral", name: "Oliver Darby", born: "bapt. Dec 8, 1708", birthplace: "Groton, MA", note: "Baptized Groton MA. Further information unknown." },
+  "sarah_cobb": { id: "sarah_cobb", gen: 1, type: "collateral", name: "Sarah (Derby) Cobb", born: "c.1662", birthplace: "Massachusetts", note: "Daughter of Edward¹ Derby." },
+  "jonathan_darby": { id: "jonathan_darby", gen: 1, type: "collateral", name: "Jonathan Darby", born: "c.1665", birthplace: "Massachusetts", note: "Son of Edward¹ Derby." },
+  "jane_blanchard": { id: "jane_blanchard", gen: 1, type: "collateral", name: "Jane (Derby) Blanchard", born: "c.1668", birthplace: "Massachusetts", note: "Daughter of Edward¹ Derby. Married a Blanchard — same family that John² married into." },
+  "ruth_shaw": { id: "ruth_shaw", gen: 1, type: "collateral", name: "Ruth (Derby) Shaw", born: "c.1670", birthplace: "Massachusetts", note: "Daughter of Edward¹ Derby." },
+  "jesse_darby": { id: "jesse_darby", gen: 3, type: "collateral", name: "Jesse Darby", born: "c.1730", birthplace: "Canterbury, CT", note: "Child of James³ + Eleanor Shepard, Canterbury CT." },
+  "patience_darby": { id: "patience_darby", gen: 3, type: "collateral", name: "Patience Darby", born: "c.1728", birthplace: "Canterbury, CT", note: "Child of James³ + Eleanor Shepard, Canterbury CT." },
+  "elizabeth_darby": { id: "elizabeth_darby", gen: 3, type: "collateral", name: "Elizabeth Darby", born: "c.1732", birthplace: "Canterbury, CT", note: "Child of James³ + Eleanor Shepard, Canterbury CT." },
+
+  // ─── GEN 5 ───
+  "joseph5": {
+    id: "joseph5", gen: 5, type: "direct",
+    name: "Joseph⁵ Darby",
+    born: "Aug 23, 1772", died: "c.1835",
+    birthplace: "Canterbury, Windham Co., CT",
+    deathplace: "Homer, Cortland Co., NY",
+    spouses: [
+      { id: "anna_grow", name: "Anna Grow", when: "May 10, 1796" },
+      { id: "asenath_tyler", name: "Asenath Tyler", when: "after 1806" }
+    ],
+    children: ["dilla_darby","lyman6","thomas6","chauncey_darby","edwin_darby","joseph_jr","lucius_tyler","asenath_darby"],
+    note: "Born Canterbury CT; moved to Homer, Cortland County NY in 1802 — Thomas⁶ Darby was born only 4 months after arrival. Coroner of Cortland County. Buried at center of the Darby family farm cemetery on East River Road, Homer NY, stone carved with two trees — Anna Grow Darby on one side, Asenath Tyler Darby on the other."
+  },
+  "anna_grow": {
+    id: "anna_grow", gen: 5, type: "spouse",
+    name: "Anna Grow Darby",
+    born: "Feb 15, 1777", died: "Jun 30, 1806",
+    birthplace: "Hampton, Windham Co., CT",
+    deathplace: "Homer, Cortland Co., NY",
+    note: "Daughter of Thomas Grow (1743-1824, Hampton CT; SAR patriot, Private 6th CT Continental Regiment 1775-76, DAR #19525) + Experience Goodell (daughter of Ebenezer Goodell). Anna died aged 29, just four years after arriving in Homer NY. Mother of Dilla, Lyman, and Thomas⁶ Darby. First SAR path runs through her father Thomas Grow. Galusha Aaron Grow (Speaker, U.S. House of Representatives 1861-63, author Homestead Act 1862) descends from the same Grow Hill family."
+  },
+  "asenath_tyler": {
+    id: "asenath_tyler", gen: 5, type: "spouse",
+    name: "Asenath Tyler Darby",
+    born: "c.1779", died: "c.1852",
+    birthplace: "Connecticut",
+    deathplace: "Homer, Cortland Co., NY",
+    note: "Joseph⁵ Darby's second wife, who raised Thomas⁶ and his siblings after Anna Grow's death in 1806. Her stone is on the other side of Joseph's grave at the Homer farm cemetery. Her Connecticut family origin is unknown. She had several children with Joseph including Rev. Chauncey A. Darby and Dr. Edwin T. Darby (ADA President 1893)."
+  },
+
+  // ─── GEN 5 Collateral ───
+  "dilla_darby": { id: "dilla_darby", gen: 5, type: "collateral", name: "Dilla Darby", born: "c.1798", birthplace: "NY", note: "Daughter of Joseph⁵ + Anna Grow. Married Stedman." },
+  "lyman6": {
+    id: "lyman6", gen: 5, type: "collateral",
+    name: "Lyman⁶ Darby",
+    born: "c.1800", died: "after 1823",
+    birthplace: "Canterbury CT or Homer NY",
+    note: "Son of Joseph⁵ + Anna Grow. Married Cynthia Salisbury (daughter of Nathan Salisbury, RI Militia patriot, DAR NSDAR 136111 & 17823) in December 1823, Cortland County NY. Cynthia had a prior first marriage to Medad Morgan (before 1823). The SAR Salisbury path runs through Lyman and Cynthia. Lyman is Thomas⁶'s brother."
+  },
+  "chauncey_darby": { id: "chauncey_darby", gen: 5, type: "collateral", name: "Rev. Chauncey A. Darby", born: "c.1808", birthplace: "Homer, NY", note: "Son of Joseph⁵ + Asenath Tyler. His son was Dr. Edwin T. Darby (b.1845), President of the American Dental Association 1893 and inventor of the Darby Tooth Scaler." },
+  "edwin_darby": { id: "edwin_darby", gen: 5, type: "collateral", name: "Edwin Henry Darby", born: "c.1810", birthplace: "Homer, NY", note: "Son of Joseph⁵ + Asenath Tyler." },
+  "joseph_jr": { id: "joseph_jr", gen: 5, type: "collateral", name: "Joseph Darby Jr.", born: "c.1808", birthplace: "Homer, NY", note: "Son of Joseph⁵ + Asenath Tyler. Co-founder of Chollar and Darby Pottery, Homer and Cortland NY (1839-1844). Their stoneware is still found at auction." },
+  "lucius_tyler": { id: "lucius_tyler", gen: 5, type: "collateral", name: "Lucius Tyler Darby", born: "c.1812", birthplace: "Homer, NY", note: "Son of Joseph⁵ + Asenath Tyler." },
+  "asenath_darby": { id: "asenath_darby", gen: 5, type: "collateral", name: "Asenath Darby", born: "c.1815", birthplace: "Homer, NY", note: "Daughter of Joseph⁵ + Asenath Tyler." },
+  "and_siblings_eleazor": null,
+
+  // ─── GEN 6 — Thomas⁶ Darby ───
+  "thomas6": {
+    id: "thomas6", gen: 6, type: "direct",
+    name: "Thomas⁶ Darby",
+    born: "Dec 6, 1802", died: "Feb 22, 1883",
+    birthplace: "Homer, Cortland Co., NY",
+    deathplace: "Homer, Cortland Co., NY",
+    spouses: [
+      { id: "abigail_sumner", name: "Abigail Sumner", when: "Jan 14, 1829" },
+      { id: "urana_peck", name: "Urana M. Peck", when: "Apr 30, 1833" },
+      { id: "harriet_brown", name: "Harriet \"Ida\" Brown", when: "1868" }
+    ],
+    children: ["tdw_young","cordelia_darby","urana_a_darby","wayland_darby","npeck_darby","thomas7","lucius_1845"],
+    note: "Born Homer NY only four months after family arrived by horse and wagon from Canterbury CT. Baptized at Homer Baptist Church at age 17. Married first to Abigail Sumner (d. Sept 14, 1832) by Judge John Keep (a Goodell family relative of Anna Grow's line). Deacon at McLean Baptist Church. Lived in Dryden, Tompkins Co. NY from 1829; returned to Homer area later. Buried at Cortland Rural Cemetery, Homer NY, sharing a headstone with son Thomas DeWight Darby (1830-1839), son Wayland D. Darby, and wife Urana M. Peck."
+  },
+  "abigail_sumner": {
+    id: "abigail_sumner", gen: 6, type: "spouse",
+    name: "Abigail Sumner",
+    born: "c.1808", died: "Sep 14, 1832",
+    birthplace: "New York",
+    note: "Thomas⁶ Darby's first wife. Married January 14, 1829 by Judge John Keep. Died Sept 14, 1832, leaving an infant son Thomas DeWight Darby (b. Aug 29, 1830) who died January 25, 1839 at age 9."
+  },
+  "urana_peck": {
+    id: "urana_peck", gen: 6, type: "spouse",
+    name: "Urana M. Peck",
+    born: "Oct 15, 1810", died: "Oct 8, 1867",
+    birthplace: "Solon, Cortland Co., NY",
+    deathplace: "Cortlandville, NY",
+    note: "Daughter of Rev. Nathan Peck (b. Jan 27, 1783, Milan, Dutchess Co. NY; Baptist minister) + Sarah 'Sally' Beebe (b. Nov 23, 1787, New London CT). Sally Beebe was daughter of Ephraim Beebe + Elizabeth Brown of New London — confirmed by 1904 Clarence Beebe Monograph p.47 and the New London Barbour Collection vital records. Nathan Peck's line confirmed through 7 generations to Deacon William Peck of Beccles, Suffolk, England (immigrant on ship Diligent 1638). The Jeduthan Beebe → Ephraim Beebe → Sally Beebe → Nathan Peck → Urana chain opens a potential third SAR path pending Jeduthan's Revolutionary War service confirmation. Urana's brother Nathan Peck Darby and his father's naming of son Nathan Peck Darby commemorate this line."
+  },
+  "harriet_brown": {
+    id: "harriet_brown", gen: 6, type: "spouse",
+    name: "Harriet \"Ida\" Brown",
+    born: "c.1835", died: "after 1883",
+    birthplace: "New York",
+    note: "Thomas⁶ Darby's third wife, married 1868 after Urana's death in 1867. 'By whom he was tenderly cared for during his declining years.' Family background unknown."
+  },
+
+  // ─── GEN 6 children ───
+  "tdw_young": { id: "tdw_young", gen: 6, type: "collateral", name: "Thomas DeWight Darby", born: "Aug 29, 1830", died: "Jan 25, 1839", birthplace: "Homer, NY", note: "First son of Thomas⁶ + Abigail Sumner. Died age 9. Buried at Cortland Rural Cemetery sharing headstone with father and Wayland. The later Thomas DeWight⁷ (b.1842) was named in his honor." },
+  "cordelia_darby": { id: "cordelia_darby", gen: 6, type: "collateral", name: "Cordelia Darby (Nye)", born: "c.1833", birthplace: "Cortland Co., NY", note: "Daughter of Thomas⁶ + Urana Peck. Married Nye." },
+  "urana_a_darby": { id: "urana_a_darby", gen: 6, type: "collateral", name: "Urana A. Darby (twin)", born: "c.1836", birthplace: "Cortland Co., NY", note: "Daughter of Thomas⁶ + Urana Peck. Named after her mother." },
+  "wayland_darby": { id: "wayland_darby", gen: 6, type: "collateral", name: "Wayland Doubleday Darby", born: "c.1838", died: "1874", birthplace: "Cortland Co., NY", deathplace: "Clarksville, Butler Co., IA", note: "Son of Thomas⁶ + Urana Peck. Middle name Doubleday honors Eleazor⁴'s wife Anna Doubleday — three generations of family memory. Followed Thomas⁷ to Iowa but died in Clarksville in 1874. Per Thomas Darby Sr.'s insistence, his body was shipped back to Cortland and buried at Cortland Rural Cemetery, sharing a headstone with his parents and brother Thomas DeWight (1830-1839)." },
+  "npeck_darby": { id: "npeck_darby", gen: 6, type: "collateral", name: "Nathan Peck Darby", born: "1838", birthplace: "Cortland Co., NY", note: "Son of Thomas⁶ + Urana Peck. Named for his maternal grandfather Rev. Nathan Peck. Buried in McLean, Tompkins County NY in the Baptist Church cemetery." },
+  "lucius_1845": { id: "lucius_1845", gen: 6, type: "collateral", name: "Lucius Darby", born: "c.1845", died: "Aug 4, 1865", birthplace: "Cortland Co., NY", deathplace: "Cortland, NY", note: "Son of Thomas⁶ + Urana Peck. Died age ~20, Cortland NY." },
+
+  // ─── GEN 7 ───
+  "thomas7": {
+    id: "thomas7", gen: 7, type: "direct",
+    name: "Thomas DeWight⁷ Darby",
+    born: "Nov 23, 1842", died: "Aug 30, 1900",
+    birthplace: "Cortland Co., NY",
+    deathplace: "Clarksville, Butler Co., IA",
+    spouses: [{ id: "frances_bement", name: "Frances Elizabeth Bement", when: "Mar 21, 1865" }],
+    children: ["lucius8"],
+    note: "Named after his half-brother Thomas DeWight who died 1839 at age 9. Born and raised Cortland County NY. Before moving to Iowa in 1868, lived with brother Nathan in Dryden, Tompkins Co. NY. Arrived Clarksville Iowa when son Lucius was only 8 months old. Purchased the Darby farm west of town. A Baptist and Plymouth Brethren member. Buried Lynwood Cemetery, Clarksville, Butler County Iowa (west edge of town, Highway C33)."
+  },
+  "frances_bement": {
+    id: "frances_bement", gen: 7, type: "spouse",
+    name: "Frances Elizabeth Bement",
+    born: "c.1843", died: "1920",
+    birthplace: "Cortland Co., NY",
+    deathplace: "Clarksville, Butler Co., IA",
+    note: "Daughter of Julius Bement (d. before 1868) + Sarah Darling (1822-1890; daughter of Reuben Darling 1791-1870, War of 1812 fifer from NH, + Frances Hart 1798-1848). Frances's brother Ed Bement and sister Sarah Bement Ford also moved to the Clarksville area ~1868. Buried Lynwood Cemetery alongside Thomas DeWight, son Lucius, and Lucius's wife Amy Scott Darby."
+  },
+
+  // ─── GEN 8 ───
+  "lucius8": {
+    id: "lucius8", gen: 8, type: "direct",
+    name: "Lucius Edwin⁸ Darby",
+    born: "Mar 26, 1868", died: "1943",
+    birthplace: "Cortland Co., NY",
+    deathplace: "Clarksville, Butler Co., IA",
+    spouses: [{ id: "amy_scott", name: "Amy Scott", when: "Dec 4, 1888" }],
+    children: ["clarence9","and_9_siblings"],
+    note: "Moved to Clarksville Iowa at age 8 months with parents. Exceptionally tall (6'1\"–6'2\"). Auburn hair, red beard, grey eyes. Deep booming voice and loved to sing — traits his son Clarence shared. Member of Plymouth Brethren (Darbyite) assembly near Clarksville. Had diabetes in his final years, as did son Clarence. Buried Lynwood Cemetery alongside parents. Had 11 children."
+  },
+  "amy_scott": {
+    id: "amy_scott", gen: 8, type: "spouse",
+    name: "Amy (Mary Amy) Scott",
+    born: "c.1867", died: "1942",
+    birthplace: "Clarksville, Butler Co., IA",
+    note: "Daughter of Isaac Scott (1839-1920, Illinois Civil War soldier) + Sarah Philippi Scott (1849-1923; daughter of David Philippi 1816-1865, buried Old Town Cemetery Clarksville, + Mary McMillan 1820-1903). David Philippi's family came from Somerset County, Pennsylvania. Mary McMillan was sister of Margaret McMillan who married Samuel Lenhart, both buried Lynwood Cemetery Clarksville."
+  },
+
+  // ─── GEN 9 ───
+  "clarence9": {
+    id: "clarence9", gen: 9, type: "direct",
+    name: "Clarence Arthur⁹ Darby",
+    born: "c.1896", died: "c.1985",
+    birthplace: "Clarksville, Butler Co., IA",
+    deathplace: "Nashua, Chickasaw Co., IA",
+    spouses: [{ id: "katie_sutter", name: "Katie Sutter (Katrina Maria)", when: "c.1917" }],
+    children: ["erwin10","david_darby","raymond_darby","leroy_darby","ellen_darby"],
+    note: "Baptist farmer. Raised in Clarksville; settled in Nashua, Iowa. Had the same deep voice and love of singing as his father Lucius. Also developed diabetes in later years — a family pattern. Buried Oak Hill Cemetery, Nashua, Chickasaw County Iowa."
+  },
+  "katie_sutter": {
+    id: "katie_sutter", gen: 9, type: "spouse",
+    name: "Katie Sutter (Katrina Maria)",
+    born: "c.1896", died: "c.1975",
+    birthplace: "Charles City, Floyd Co., IA",
+    note: "German-Iowa Sutter family. No birth certificate located. The Sutter family were German immigrants who settled in the Charles City, Iowa area. Her specific parentage has not been fully documented."
+  },
+  "and_9_siblings": null,
+
+  // ─── GEN 9 Collateral ───
+  "david_darby": { id: "david_darby", gen: 9, type: "collateral", name: "David Lucius⁹ Darby", born: "c.1919", birthplace: "Nashua, IA", note: "Son of Clarence + Katie. Married Geneva McCurly Howard. Son Sandra Kay. Great-grand-uncle." },
+  "raymond_darby": { id: "raymond_darby", gen: 9, type: "collateral", name: "Raymond Lyle⁹ Darby", born: "c.1923", birthplace: "Nashua, IA", note: "Son of Clarence + Katie. WWII Navy, Aviation Machinist. ATSF Railroad, California. His daughter Lynda Rae Darby Ozinga compiled the Tompkins County NYGenWeb genealogy of the Nathan Peck descent, visiting graves and towns with Jacob's father. Essential source for the Beebe-Peck-Darby chain." },
+  "leroy_darby": { id: "leroy_darby", gen: 9, type: "collateral", name: "LeRoy Charles⁹ Darby", born: "c.1927", birthplace: "Nashua, IA", note: "Son of Clarence + Katie. Married Colleen Obermeier. Children: Cathleen, Douglas, Tricia. Great-grand-uncle." },
+  "ellen_darby": { id: "ellen_darby", gen: 9, type: "collateral", name: "Ellen Lorraine Darby", born: "c.1929", birthplace: "Nashua, IA", note: "Daughter of Clarence + Katie. Married Harold Roberts. Great-grand-aunt." },
+
+  // ─── GEN 10 ───
+  "erwin10": {
+    id: "erwin10", gen: 10, type: "direct",
+    name: "Erwin Clarence¹⁰ Darby",
+    born: "c.1924", died: "after 1987",
+    birthplace: "Plainfield, Bremer Co., IA",
+    deathplace: "Waterloo, Black Hawk Co., IA",
+    spouses: [{ id: "ella_podhaski", name: "Ella Podhaski", when: "1947" }],
+    children: ["kenneth11"],
+    note: "Your grandfather. Raised in Iowa; settled in Waterloo."
+  },
+  "ella_podhaski": {
+    id: "ella_podhaski", gen: 10, type: "spouse",
+    name: "Ella Podhaski",
+    born: "c.1924", died: "after 1987",
+    birthplace: "Waterloo, Black Hawk Co., IA",
+    note: "Polish Tatra highlands ancestry. 'Podhaski' means 'from the Podhale' — the sub-Tatric highland region of southern Poland. Her family emigrated from that region and settled in the Waterloo, Iowa area. The Podhale region is in the Carpathian mountains on the Poland-Slovakia border, with a distinct culture, dialect, and highlander identity."
+  },
+
+  // ─── GEN 11 ───
+  "kenneth11": {
+    id: "kenneth11", gen: 11, type: "direct",
+    name: "Kenneth Duane¹¹ Darby",
+    born: "c.1955",
+    birthplace: "Waterloo, Black Hawk Co., IA",
+    spouses: [{ id: "cynthia_steinbron", name: "Cynthia Jean Steinbron", when: "1978" }],
+    children: ["jacob12"],
+    note: "Your father."
+  },
+  "cynthia_steinbron": {
+    id: "cynthia_steinbron", gen: 11, type: "spouse",
+    name: "Cynthia Jean Steinbron",
+    born: "c.1957",
+    birthplace: "Iowa",
+    note: "The Steinbron family immigrated from Germany/Austria to Iowa. Immigration records have not been fully researched."
+  },
+
+  // ─── GEN 12 ───
+  "jacob12": {
+    id: "jacob12", gen: 12, type: "direct",
+    name: "Jacob Richard¹² Darby",
+    born: "Sep 12, 1987",
+    birthplace: "Waterloo, IA",
+    deathplace: "West Branch, Johnson Co., IA",
+    note: "12th-generation American Darby. Founder and Fractional CPO. Built Vela Solved LLC, Caxion AI, and ApexTruth Health. Leads Iron Sharpens Iron (ISI) nonprofit, West Branch Iowa. The Darby family's journey: Bisley, Surrey, England (c.1650) → Weymouth MA → Dunstable MA → Canterbury CT → Homer NY → Clarksville IA → Nashua IA → Waterloo IA → West Branch IA."
+  }
+};
+
+// ──────────────────────────────────────────────────────────────────
+// GENERATION STRUCTURE
+// ──────────────────────────────────────────────────────────────────
+const GEN_STRUCTURE = [
+  {
+    gen: 1, label: "Generation 1 — England to Massachusetts (1648-1672)",
+    direct: ["edward1"],
+    spouses: { "edward1": ["susanna_hooke"] },
+    otherChildren: ["sarah_cobb","jonathan_darby","jane_blanchard","ruth_shaw"]
+  },
+  {
+    gen: 2, label: "Generation 2 — Massachusetts (1672-1702)",
+    direct: ["john2"],
+    spouses: { "john2": ["mary_blanchard"] },
+    otherChildren: ["oliver_darby"]
+  },
+  {
+    gen: 3, label: "Generation 3 — Dunstable MA to Canterbury CT (1702-1731)",
+    direct: ["james3"],
+    spouses: { "james3": ["eleanor_shepard"] },
+    otherChildren: ["jesse_darby","patience_darby","elizabeth_darby"]
+  },
+  {
+    gen: 4, label: "Generation 4 — Canterbury, Connecticut (1731-1802)",
+    direct: ["eleazor4"],
+    spouses: { "eleazor4": ["anna_doubleday"] },
+    otherChildren: []
+  },
+  {
+    gen: 5, label: "Generation 5 — Canterbury CT to Homer, New York (1772-1842)",
+    direct: ["joseph5"],
+    spouses: { "joseph5": ["anna_grow","asenath_tyler"] },
+    otherChildren: ["dilla_darby","lyman6","chauncey_darby","edwin_darby","joseph_jr","lucius_tyler","asenath_darby"]
+  },
+  {
+    gen: 6, label: "Generation 6 — Homer, New York (1802-1868)",
+    direct: ["thomas6"],
+    spouses: { "thomas6": ["abigail_sumner","urana_peck","harriet_brown"] },
+    otherChildren: ["tdw_young","cordelia_darby","urana_a_darby","wayland_darby","npeck_darby","lucius_1845"]
+  },
+  {
+    gen: 7, label: "Generation 7 — New York to Iowa (1842-1900)",
+    direct: ["thomas7"],
+    spouses: { "thomas7": ["frances_bement"] },
+    otherChildren: []
+  },
+  {
+    gen: 8, label: "Generation 8 — Clarksville, Iowa (1868-1943)",
+    direct: ["lucius8"],
+    spouses: { "lucius8": ["amy_scott"] },
+    otherChildren: []
+  },
+  {
+    gen: 9, label: "Generation 9 — Clarksville to Nashua, Iowa (c.1896-1985)",
+    direct: ["clarence9"],
+    spouses: { "clarence9": ["katie_sutter"] },
+    otherChildren: ["david_darby","raymond_darby","leroy_darby","ellen_darby"]
+  },
+  {
+    gen: 10, label: "Generation 10 — Iowa (c.1924)",
+    direct: ["erwin10"],
+    spouses: { "erwin10": ["ella_podhaski"] },
+    otherChildren: []
+  },
+  {
+    gen: 11, label: "Generation 11 — Waterloo, Iowa (c.1955)",
+    direct: ["kenneth11"],
+    spouses: { "kenneth11": ["cynthia_steinbron"] },
+    otherChildren: []
+  },
+  {
+    gen: 12, label: "Generation 12 — West Branch, Iowa (1987)",
+    direct: ["jacob12"],
+    spouses: {},
+    otherChildren: []
+  }
+];
+
+// ──────────────────────────────────────────────────────────────────
+// RENDER TREE
+// ──────────────────────────────────────────────────────────────────
+function renderTree() {
+  const root = document.getElementById('treeRoot');
+  root.innerHTML = '';
+
+  GEN_STRUCTURE.forEach(genData => {
+    const row = document.createElement('div');
+    row.className = 'gen-row visible';
+    row.dataset.gen = genData.gen;
+
+    // Gen label
+    const label = document.createElement('div');
+    label.className = 'gen-label';
+    label.textContent = genData.label;
+    row.appendChild(label);
+
+    // For each direct person in this gen
+    genData.direct.forEach(pid => {
+      const p = PEOPLE[pid];
+      if (!p) return;
+
+      const group = document.createElement('div');
+      group.className = 'person-group';
+
+      // Person + spouses row
+      const personRow = document.createElement('div');
+      personRow.className = 'person-row';
+
+      // The direct person card
+      personRow.appendChild(makeCard(p));
+
+      // Spouses
+      const spouseIds = genData.spouses[pid] || [];
+      spouseIds.forEach((sid, i) => {
+        const sp = PEOPLE[sid];
+        if (!sp) return;
+        const conn = document.createElement('div');
+        conn.className = 'marriage-connector';
+        const md = p.spouses && p.spouses[i] ? p.spouses[i].when : '';
+        conn.innerHTML = `<span>&#9825;</span><span class="marriage-date">${md ? 'm. '+md : 'married'}</span>`;
+        personRow.appendChild(conn);
+        personRow.appendChild(makeCard(sp));
+      });
+
+      group.appendChild(personRow);
+
+      // Children block (collateral + direct next gen)
+      const otherKids = genData.otherChildren || [];
+      if (otherKids.length > 0) {
+        const childBlock = document.createElement('div');
+        childBlock.className = 'children-block';
+        childBlock.id = `cb_${pid}`;
+
+        const cl = document.createElement('div');
+        cl.className = 'children-label';
+        cl.textContent = `Other children of this generation (${otherKids.length})`;
+        childBlock.appendChild(cl);
+
+        const cc = document.createElement('div');
+        cc.className = 'child-cards';
+        otherKids.forEach(cid => {
+          const child = PEOPLE[cid];
+          if (!child) return;
+          const cc2 = makeChildCard(child);
+          cc.appendChild(cc2);
+        });
+        childBlock.appendChild(cc);
+        group.appendChild(childBlock);
+
+        // Expand button
+        const btn = document.createElement('button');
+        btn.className = 'expand-btn';
+        btn.innerHTML = `<span>Other children (${otherKids.length})</span><span class="arrow">&#9660;</span>`;
+        btn.onclick = () => {
+          const cb = document.getElementById(`cb_${pid}`);
+          const isOpen = cb.classList.contains('open');
+          cb.classList.toggle('open', !isOpen);
+          btn.classList.toggle('open', !isOpen);
+          btn.querySelector('.arrow').textContent = isOpen ? '▼' : '▲';
+        };
+        group.appendChild(btn);
+      }
+
+      row.appendChild(group);
+    });
+
+    root.appendChild(row);
+  });
+}
+
+function makeCard(p) {
+  const div = document.createElement('div');
+  div.className = `person-card ${p.type}`;
+  div.dataset.id = p.id;
+
+  let dates = '';
+  if (p.born) dates += `b. ${p.born}`;
+  if (p.died) dates += ` &middot; d. ${p.died}`;
+
+  div.innerHTML = `
+    <div class="person-name">${p.name}</div>
+    ${dates ? `<div class="person-dates">${dates}</div>` : ''}
+    ${p.birthplace ? `<div class="person-place">${p.birthplace}${p.deathplace ? ' → ' + p.deathplace : ''}</div>` : ''}
+    ${p.note ? `<div class="person-note">${p.note.substring(0,120)}${p.note.length>120?'…':''}</div>` : ''}
+  `;
+  div.onclick = () => openDetail(p.id);
+  return div;
+}
+
+function makeChildCard(p) {
+  const div = document.createElement('div');
+  div.className = `child-card ${p.type === 'direct' ? 'child-direct' : 'child-coll'}`;
+  div.dataset.id = p.id;
+  let dates = '';
+  if (p.born) dates += p.born;
+  if (p.died) dates += ` – ${p.died}`;
+  div.innerHTML = `
+    <div class="c-name">${p.name}</div>
+    ${dates ? `<div class="c-dates">${dates}</div>` : ''}
+    ${p.note ? `<div class="c-note">${p.note.substring(0,90)}${p.note.length>90?'…':''}</div>` : ''}
+  `;
+  div.onclick = () => openDetail(p.id);
+  div.style.cursor = 'pointer';
+  return div;
+}
+
+// ──────────────────────────────────────────────────────────────────
+// DETAIL PANEL
+// ──────────────────────────────────────────────────────────────────
+function openDetail(pid) {
+  const p = PEOPLE[pid];
+  if (!p) return;
+
+  document.getElementById('dpName').textContent = p.name;
+  document.getElementById('dpGen').textContent = p.type === 'direct' ? `Generation ${p.gen} — Direct Line` :
+    p.type === 'spouse' ? `Spouse — Generation ${p.gen}` : `Collateral — Generation ${p.gen}`;
+
+  let html = '';
+
+  // Vitals
+  html += '<div class="detail-section"><h4>Vital Records</h4>';
+  if (p.born) html += `<div class="detail-row"><span class="dr-label">Born</span><span class="dr-value">${p.born}</span></div>`;
+  if (p.birthplace) html += `<div class="detail-row"><span class="dr-label">Birthplace</span><span class="dr-value">${p.birthplace}</span></div>`;
+  if (p.died) html += `<div class="detail-row"><span class="dr-label">Died</span><span class="dr-value">${p.died}</span></div>`;
+  if (p.deathplace) html += `<div class="detail-row"><span class="dr-label">Buried/Died</span><span class="dr-value">${p.deathplace}</span></div>`;
+  html += '</div>';
+
+  // Spouses
+  if (p.spouses && p.spouses.length > 0) {
+    html += '<div class="detail-section"><h4>Marriages</h4>';
+    p.spouses.forEach(s => {
+      const sp = PEOPLE[s.id];
+      html += `<div class="spouse-block">
+        <div class="sb-name">${s.name}</div>
+        <div class="sb-detail">Married: ${s.when || 'date unknown'}</div>
+        ${sp && sp.birthplace ? `<div class="sb-detail">b. ${sp.birthplace}</div>` : ''}
+      </div>`;
+    });
+    html += '</div>';
+  }
+
+  // Notes
+  if (p.note) {
+    html += `<div class="detail-section"><h4>Research Notes</h4><div class="detail-note">${p.note}</div></div>`;
+  }
+
+  document.getElementById('dpBody').innerHTML = html;
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('detailPanel').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('detailPanel').classList.remove('open');
+}
+
+// ──────────────────────────────────────────────────────────────────
+// FILTERS
+// ──────────────────────────────────────────────────────────────────
+function showAll() {
+  document.querySelectorAll('.gen-row').forEach(r => r.classList.add('visible'));
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function showDirect() {
+  document.querySelectorAll('.gen-row').forEach(r => r.classList.add('visible'));
+  document.querySelectorAll('.person-card.collateral, .person-card.spouse, .children-block').forEach(el => {
+    el.style.display = 'none';
+  });
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function showGen(from, to) {
+  document.querySelectorAll('.person-card, .children-block').forEach(el => el.style.display = '');
+  document.querySelectorAll('.gen-row').forEach(r => {
+    const g = parseInt(r.dataset.gen);
+    r.classList.toggle('visible', g >= from && g <= to);
+  });
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function searchTree(val) {
+  document.querySelectorAll('.highlight').forEach(el => {
+    el.outerHTML = el.innerHTML;
+  });
+  if (!val || val.length < 2) {
+    document.querySelectorAll('.gen-row').forEach(r => r.classList.add('visible'));
+    document.querySelectorAll('.person-card,.child-card').forEach(el => el.style.opacity = '1');
+    return;
+  }
+  val = val.toLowerCase();
+  document.querySelectorAll('.gen-row').forEach(r => r.classList.add('visible'));
+  document.querySelectorAll('.person-card,.child-card').forEach(el => {
+    const name = el.querySelector('.person-name, .c-name');
+    if (name) {
+      const match = name.textContent.toLowerCase().includes(val);
+      el.style.opacity = match ? '1' : '0.3';
+      if (match) {
+        el.style.opacity = '1';
+        el.style.boxShadow = '0 0 0 2px var(--gold)';
+      } else {
+        el.style.boxShadow = '';
+      }
+    }
+  });
+}
+
+// ──────────────────────────────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────────────────────────────
+renderTree();
+</script>
+</body>
+</html>
