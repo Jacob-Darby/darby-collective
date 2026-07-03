@@ -661,7 +661,7 @@ a:focus, button:focus, [tabindex="0"]:focus {
     <a class="nav-link" href="#relatives" role="menuitem">Relatives</a>
     <a class="nav-link" href="#sar" role="menuitem">SAR</a>
     <a class="nav-link" href="#research" role="menuitem">Research</a>
-    <a class="nav-link" href="#connect" role="menuitem">Connect</a>
+    
   </div>
   <button class="nav-burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">&#9776;</button>
 </nav>
@@ -1509,11 +1509,7 @@ a:focus, button:focus, [tabindex="0"]:focus {
           <span class="db-desc">DNA project for Darby/Derby surname. Haplogroup R-M269 and I-M253.</span>
         </a>
       </div>
-
-      <div class="contact-note" style="margin-top:20px;">
-        <p><strong>Know something we don't?</strong> If you have records, photos, or corrections for any person on this site, or you've found a DNA match, reach out at <a href="mailto:jacob@velasolved.com">jacob@velasolved.com</a>. All contributions will be credited and incorporated.</p>
-      </div>
-    </div>
+</div>
 
     <!-- DARBY NAME GUIDE -->
     <div class="connect-panel">
@@ -1583,7 +1579,7 @@ mobileMenu.querySelectorAll('a').forEach(a => {
 });
 
 // ACTIVE NAV
-const sectionIds = ['hero','lineage','timeline','families','england','relatives','sar','research','connect'];
+const sectionIds = ['hero','lineage','timeline','families','england','relatives','sar','research',];
 window.addEventListener('scroll', () => {
   const y = window.scrollY + 80;
   let cur = '';
