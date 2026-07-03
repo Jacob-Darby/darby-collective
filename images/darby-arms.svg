@@ -1,154 +1,180 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 480" width="340" height="480">
+<?xml version="1.0" encoding="utf-8" ?>
+<svg version="1.1" baseProfile="full"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  preserveAspectRatio="xMidYMid meet"
+  height="640" width="500" viewBox="0 0 1000 1280">
+
   <defs>
-    <!-- Shield clip path -->
+    <!-- DrawShield's exact heater shield mask path -->
+    <mask id="shield-mask">
+      <path fill="#FFFFFF" d="m 0,0 v 800 c -2.5063876,43.11115 1.2341419,84.33503 21.489586,125.13639 20.255443,40.80137 53.477613,79.98631 98.039434,115.63581 44.56181,35.6494 100.44867,67.7517 164.92346,94.7345 64.47479,26.9828 137.51639,48.8374 215.54752,64.4933 78.03113,-15.6559 151.07273,-37.5105 215.54752,-64.4933 64.47479,-26.9828 120.36165,-59.0851 164.92346,-94.7345 44.56182,-35.6495 77.78399,-74.83444 98.03943,-115.63581 C 998.76586,884.33503 1000.1453,841.93063 1000,800 V 0 Z"/>
+    </mask>
     <clipPath id="shield-clip">
-      <path d="M 25,25 L 315,25 L 315,230 Q 315,360 170,450 Q 25,360 25,230 Z"/>
+      <path d="m 0,0 v 800 c -2.5063876,43.11115 1.2341419,84.33503 21.489586,125.13639 20.255443,40.80137 53.477613,79.98631 98.039434,115.63581 44.56181,35.6494 100.44867,67.7517 164.92346,94.7345 64.47479,26.9828 137.51639,48.8374 215.54752,64.4933 78.03113,-15.6559 151.07273,-37.5105 215.54752,-64.4933 64.47479,-26.9828 120.36165,-59.0851 164.92346,-94.7345 44.56182,-35.6495 77.78399,-74.83444 98.03943,-115.63581 C 998.76586,884.33503 1000.1453,841.93063 1000,800 V 0 Z"/>
     </clipPath>
-    <!-- Garb body clip -->
-    <clipPath id="garb1-clip"><ellipse cx="170" cy="105" rx="28" ry="38"/></clipPath>
-    <clipPath id="garb2-clip"><ellipse cx="80" cy="290" rx="28" ry="38"/></clipPath>
-    <clipPath id="garb3-clip"><ellipse cx="260" cy="290" rx="28" ry="38"/></clipPath>
   </defs>
 
-  <!-- ── WREATH / TORSE above shield ── -->
-  <g transform="translate(170,18)">
-    <!-- Alternating argent and sable wreath segments -->
-    <ellipse cx="0" cy="0" rx="42" ry="13" fill="#d0d0d0" stroke="#111" stroke-width="1.5"/>
-    <rect x="-42" y="-7" width="14" height="14" fill="#111" rx="2"/>
-    <rect x="-14" y="-7" width="14" height="14" fill="#d0d0d0" rx="2"/>
-    <rect x="14" y="-7" width="14" height="14" fill="#111" rx="2"/>
-    <ellipse cx="0" cy="0" rx="42" ry="13" fill="none" stroke="#111" stroke-width="1.5"/>
-  </g>
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- CREST AREA (above shield, y 0-200)              -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <g transform="translate(500,180)">
+    <!-- Wreath / torse (twisted roll of cloth, argent and sable) -->
+    <ellipse cx="0" cy="30" rx="120" ry="34" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="4"/>
+    <!-- Sable segments of wreath -->
+    <rect x="-120" y="10" width="40" height="40" fill="#1a1a1a" rx="8"/>
+    <rect x="-40" y="10" width="40" height="40" fill="#e8e8e8" rx="8"/>
+    <rect x="40" y="10" width="40" height="40" fill="#1a1a1a" rx="8"/>
+    <!-- Overlay ellipse border -->
+    <ellipse cx="0" cy="30" rx="120" ry="34" fill="none" stroke="#1a1a1a" stroke-width="4"/>
 
-  <!-- ── CREST: antelope head erased gules ── -->
-  <g transform="translate(170,0)" font-family="serif">
-    <!-- Neck / erased base (gules) -->
-    <ellipse cx="0" cy="-32" rx="22" ry="14" fill="#8b1a1a"/>
+    <!-- Antelope head erased gules (red) -->
+    <!-- Neck (erased/torn base - irregular ragged edge) -->
+    <path d="M -70,0 Q -50,-10 -20,-15 Q 0,-18 20,-15 Q 50,-10 70,0 Q 60,-30 40,-38 Q 20,-44 0,-45 Q -20,-44 -40,-38 Q -60,-30 -70,0 Z" fill="#9b1c1c"/>
     <!-- Head body -->
-    <ellipse cx="0" cy="-62" rx="20" ry="24" fill="#8b1a1a"/>
+    <ellipse cx="0" cy="-120" rx="75" ry="90" fill="#9b1c1c"/>
     <!-- Muzzle -->
-    <ellipse cx="0" cy="-82" rx="12" ry="9" fill="#8b1a1a"/>
-    <!-- Nostril -->
-    <circle cx="-4" cy="-85" r="2" fill="#5a0e0e"/>
-    <circle cx="4" cy="-85" r="2" fill="#5a0e0e"/>
+    <ellipse cx="0" cy="-200" rx="45" ry="38" fill="#9b1c1c"/>
+    <!-- Nose/mouth detail -->
+    <path d="M -20,-225 Q 0,-230 20,-225" stroke="#6b0e0e" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="-12" cy="-218" r="6" fill="#6b0e0e"/>
+    <circle cx="12" cy="-218" r="6" fill="#6b0e0e"/>
     <!-- Eye -->
-    <circle cx="-10" cy="-68" r="4" fill="#1a1a1a"/>
-    <circle cx="-9" cy="-67" r="1.5" fill="#fff"/>
+    <circle cx="-38" cy="-155" r="14" fill="#1a1a1a"/>
+    <circle cx="-33" cy="-152" r="5" fill="#fff" opacity="0.6"/>
     <!-- Ear -->
-    <ellipse cx="-18" cy="-72" rx="6" ry="10" fill="#8b1a1a" transform="rotate(-20,-18,-72)"/>
-    <ellipse cx="-18" cy="-72" rx="3" ry="6" fill="#b83a3a" transform="rotate(-20,-18,-72)"/>
-    <!-- Mane (or = gold) -->
-    <path d="M -8,-55 Q -22,-50 -20,-38 Q -18,-28 -12,-25" stroke="#b8973a" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M -5,-55 Q -18,-48 -16,-36 Q -14,-26 -8,-23" stroke="#b8973a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <path d="M 2,-54 Q -10,-47 -8,-35 Q -6,-25 -2,-22" stroke="#b8973a" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <!-- Horns (attired or = gold) -->
-    <path d="M -8,-88 Q -18,-105 -12,-118 Q -8,-128 -4,-122" stroke="#b8973a" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M 8,-88 Q 18,-105 12,-118 Q 8,-128 4,-122" stroke="#b8973a" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <!-- Horn tines -->
-    <path d="M -13,-110 Q -22,-108 -20,-102" stroke="#b8973a" stroke-width="2" fill="none"/>
-    <path d="M 13,-110 Q 22,-108 20,-102" stroke="#b8973a" stroke-width="2" fill="none"/>
-    <!-- Outline -->
-    <ellipse cx="0" cy="-62" rx="20" ry="24" fill="none" stroke="#5a0e0e" stroke-width="1.2"/>
-    <ellipse cx="0" cy="-82" rx="12" ry="9" fill="none" stroke="#5a0e0e" stroke-width="1"/>
+    <ellipse cx="-65" cy="-170" rx="18" ry="32" fill="#9b1c1c" transform="rotate(-25,-65,-170)"/>
+    <ellipse cx="-65" cy="-170" rx="9" ry="18" fill="#c43030" transform="rotate(-25,-65,-170)"/>
+    <!-- Mane (or/gold) - flowing from neck -->
+    <path d="M -30,-45 Q -80,-80 -85,-130 Q -80,-160 -60,-170" stroke="#b8973a" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M -15,-45 Q -65,-75 -68,-120 Q -65,-148 -48,-158" stroke="#b8973a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M 0,-45 Q -45,-70 -46,-110 Q -44,-136 -30,-145" stroke="#b8973a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- Horns (attired or/gold) - two tines each -->
+    <!-- Left horn -->
+    <path d="M -32,-200 Q -55,-240 -45,-285 Q -38,-310 -25,-305" stroke="#b8973a" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M -42,-252 Q -68,-262 -65,-248" stroke="#b8973a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- Right horn -->
+    <path d="M 32,-200 Q 55,-240 45,-285 Q 38,-310 25,-305" stroke="#b8973a" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M 42,-252 Q 68,-262 65,-248" stroke="#b8973a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- Head outline -->
+    <ellipse cx="0" cy="-120" rx="75" ry="90" fill="none" stroke="#6b0e0e" stroke-width="3"/>
+    <ellipse cx="0" cy="-200" rx="45" ry="38" fill="none" stroke="#6b0e0e" stroke-width="2"/>
   </g>
 
-  <!-- ── SHIELD ── -->
-  <!-- Background: Argent (silver-white) -->
-  <path d="M 25,25 L 315,25 L 315,230 Q 315,360 170,450 Q 25,360 25,230 Z"
-        fill="#f2f2f2" stroke="#1a1a1a" stroke-width="4"/>
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SHIELD (y 200-1150 in viewBox)                  -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <g transform="translate(0,200)">
+    <!-- Argent field (silver/white) -->
+    <g mask="url(#shield-mask)">
+      <rect x="0" y="0" width="1000" height="1200" fill="#f4f4f0"/>
 
-  <!-- Chevron sable (black inverted-V) centered in shield -->
-  <!-- Chevron spans the shield, point at about y=140, base arms at y=220 -->
-  <polygon points="170,108  310,228  310,258  170,138  30,258  30,228"
-           fill="#1a1a1a" clip-path="url(#shield-clip)"/>
+      <!-- ── CHEVRON SABLE ── -->
+      <!-- Chevron: inverted V, center at ~y=500, width thick enough to be bold -->
+      <!-- Left arm: from bottom-left going up to center apex -->
+      <!-- Right arm: from center apex going down to bottom-right -->
+      <!-- Chevron thickness = 120 units -->
+      <polygon points="
+        500,310
+        960,770  960,890
+        500,430
+        40,890   40,770
+      " fill="#1a1a1a"/>
 
-  <!-- ── GARBS (wheat sheaves) ── -->
-  <!-- GARB 1: above chevron, center top -->
-  <g clip-path="url(#shield-clip)">
-    <!-- sheaf body -->
-    <ellipse cx="170" cy="72" rx="15" ry="28" fill="#1a1a1a"/>
-    <!-- binding band (or / gold) -->
-    <rect x="155" y="66" width="30" height="10" fill="#b8973a" rx="2"/>
-    <!-- wheat heads at top -->
-    <line x1="160" y1="44" x2="158" y2="56" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="164" y1="42" x2="163" y2="56" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="168" y1="40" x2="168" y2="56" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="172" y1="40" x2="172" y2="56" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="176" y1="42" x2="177" y2="56" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="180" y1="44" x2="182" y2="56" stroke="#1a1a1a" stroke-width="2.5"/>
-    <ellipse cx="158" cy="44" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="163" cy="42" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="168" cy="40" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="173" cy="40" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="178" cy="42" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="183" cy="44" rx="4" ry="7" fill="#1a1a1a"/>
-    <!-- stalks below band -->
-    <path d="M 162,76 Q 158,90 156,100" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 166,76 Q 164,90 163,100" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 170,76 Q 170,90 170,100" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 174,76 Q 176,90 177,100" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 178,76 Q 182,90 184,100" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+      <!-- ── GARB 1 — above chevron, center top ── -->
+      <g transform="translate(500,160)">
+        <!-- Wheat ears fanning upward -->
+        <g fill="#1a1a1a">
+          <ellipse cx="-60" cy="-60" rx="18" ry="32" transform="rotate(-28,-60,-60)"/>
+          <ellipse cx="-36" cy="-75" rx="18" ry="32" transform="rotate(-16,-36,-75)"/>
+          <ellipse cx="-12" cy="-82" rx="18" ry="32" transform="rotate(-5,-12,-82)"/>
+          <ellipse cx="12" cy="-82" rx="18" ry="32" transform="rotate(5,12,-82)"/>
+          <ellipse cx="36" cy="-75" rx="18" ry="32" transform="rotate(16,36,-75)"/>
+          <ellipse cx="60" cy="-60" rx="18" ry="32" transform="rotate(28,60,-60)"/>
+        </g>
+        <!-- Stalks -->
+        <line x1="-60" y1="-28" x2="-20" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="-36" y1="-43" x2="-10" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="-12" y1="-50" x2="0" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="12" y1="-50" x2="0" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="36" y1="-43" x2="10" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="60" y1="-28" x2="20" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <!-- Bundle body -->
+        <ellipse cx="0" cy="50" rx="55" ry="40" fill="#1a1a1a"/>
+        <!-- Gold band -->
+        <rect x="-60" y="28" width="120" height="36" fill="#b8973a" rx="4"/>
+        <!-- Straw base below band -->
+        <ellipse cx="0" cy="95" rx="35" ry="48" fill="#1a1a1a"/>
+        <!-- Small taper at very bottom -->
+        <ellipse cx="0" cy="138" rx="16" ry="12" fill="#1a1a1a"/>
+      </g>
+
+      <!-- ── GARB 2 — lower left ── -->
+      <g transform="translate(240,720)">
+        <g fill="#1a1a1a">
+          <ellipse cx="-60" cy="-60" rx="18" ry="32" transform="rotate(-28,-60,-60)"/>
+          <ellipse cx="-36" cy="-75" rx="18" ry="32" transform="rotate(-16,-36,-75)"/>
+          <ellipse cx="-12" cy="-82" rx="18" ry="32" transform="rotate(-5,-12,-82)"/>
+          <ellipse cx="12" cy="-82" rx="18" ry="32" transform="rotate(5,12,-82)"/>
+          <ellipse cx="36" cy="-75" rx="18" ry="32" transform="rotate(16,36,-75)"/>
+          <ellipse cx="60" cy="-60" rx="18" ry="32" transform="rotate(28,60,-60)"/>
+        </g>
+        <line x1="-60" y1="-28" x2="-20" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="-36" y1="-43" x2="-10" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="-12" y1="-50" x2="0" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="12" y1="-50" x2="0" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="36" y1="-43" x2="10" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="60" y1="-28" x2="20" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <ellipse cx="0" cy="50" rx="55" ry="40" fill="#1a1a1a"/>
+        <rect x="-60" y="28" width="120" height="36" fill="#b8973a" rx="4"/>
+        <ellipse cx="0" cy="95" rx="35" ry="48" fill="#1a1a1a"/>
+        <ellipse cx="0" cy="138" rx="16" ry="12" fill="#1a1a1a"/>
+      </g>
+
+      <!-- ── GARB 3 — lower right ── -->
+      <g transform="translate(760,720)">
+        <g fill="#1a1a1a">
+          <ellipse cx="-60" cy="-60" rx="18" ry="32" transform="rotate(-28,-60,-60)"/>
+          <ellipse cx="-36" cy="-75" rx="18" ry="32" transform="rotate(-16,-36,-75)"/>
+          <ellipse cx="-12" cy="-82" rx="18" ry="32" transform="rotate(-5,-12,-82)"/>
+          <ellipse cx="12" cy="-82" rx="18" ry="32" transform="rotate(5,12,-82)"/>
+          <ellipse cx="36" cy="-75" rx="18" ry="32" transform="rotate(16,36,-75)"/>
+          <ellipse cx="60" cy="-60" rx="18" ry="32" transform="rotate(28,60,-60)"/>
+        </g>
+        <line x1="-60" y1="-28" x2="-20" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="-36" y1="-43" x2="-10" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="-12" y1="-50" x2="0" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="12" y1="-50" x2="0" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="36" y1="-43" x2="10" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <line x1="60" y1="-28" x2="20" y2="20" stroke="#1a1a1a" stroke-width="5"/>
+        <ellipse cx="0" cy="50" rx="55" ry="40" fill="#1a1a1a"/>
+        <rect x="-60" y="28" width="120" height="36" fill="#b8973a" rx="4"/>
+        <ellipse cx="0" cy="95" rx="35" ry="48" fill="#1a1a1a"/>
+        <ellipse cx="0" cy="138" rx="16" ry="12" fill="#1a1a1a"/>
+      </g>
+    </g>
+
+    <!-- Shield border -->
+    <path d="m 0,0 v 800 c -2.5063876,43.11115 1.2341419,84.33503 21.489586,125.13639 20.255443,40.80137 53.477613,79.98631 98.039434,115.63581 44.56181,35.6494 100.44867,67.7517 164.92346,94.7345 64.47479,26.9828 137.51639,48.8374 215.54752,64.4933 78.03113,-15.6559 151.07273,-37.5105 215.54752,-64.4933 64.47479,-26.9828 120.36165,-59.0851 164.92346,-94.7345 44.56182,-35.6495 77.78399,-74.83444 98.03943,-115.63581 C 998.76586,884.33503 1000.1453,841.93063 1000,800 V 0 Z"
+      fill="none" stroke="#1a1a1a" stroke-width="12"/>
   </g>
 
-  <!-- GARB 2: lower left -->
-  <g clip-path="url(#shield-clip)">
-    <ellipse cx="88" cy="295" rx="15" ry="28" fill="#1a1a1a"/>
-    <rect x="73" y="289" width="30" height="10" fill="#b8973a" rx="2"/>
-    <line x1="78" y1="267" x2="76" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="82" y1="265" x2="81" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="86" y1="263" x2="86" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="90" y1="263" x2="90" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="94" y1="265" x2="95" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="98" y1="267" x2="100" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <ellipse cx="76" cy="267" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="81" cy="265" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="86" cy="263" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="91" cy="263" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="96" cy="265" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="101" cy="267" rx="4" ry="7" fill="#1a1a1a"/>
-    <path d="M 80,299 Q 76,313 74,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 84,299 Q 82,313 81,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 88,299 Q 88,313 88,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 92,299 Q 94,313 95,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 96,299 Q 100,313 102,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- MOTTO SCROLL (below shield)                     -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <g transform="translate(0,1200)">
+    <!-- Ribbon body -->
+    <path d="M 80,20 Q 200,0 500,8 Q 800,0 920,20 Q 840,55 500,48 Q 160,55 80,20 Z"
+          fill="#f0ede0" stroke="#2a2a2a" stroke-width="5"/>
+    <!-- Left curl -->
+    <path d="M 80,20 Q 40,12 50,35 Q 58,52 90,48" fill="#ddd8c0" stroke="#2a2a2a" stroke-width="4"/>
+    <!-- Right curl -->
+    <path d="M 920,20 Q 960,12 950,35 Q 942,52 910,48" fill="#ddd8c0" stroke="#2a2a2a" stroke-width="4"/>
+    <!-- Motto text -->
+    <text x="500" y="38" text-anchor="middle"
+          font-family="Palatino Linotype, Palatino, Book Antiqua, serif"
+          font-size="42" font-style="italic" fill="#1a1a1a" letter-spacing="3">
+      Ut cunque placuerit Deo
+    </text>
   </g>
-
-  <!-- GARB 3: lower right -->
-  <g clip-path="url(#shield-clip)">
-    <ellipse cx="252" cy="295" rx="15" ry="28" fill="#1a1a1a"/>
-    <rect x="237" y="289" width="30" height="10" fill="#b8973a" rx="2"/>
-    <line x1="242" y1="267" x2="240" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="246" y1="265" x2="245" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="250" y1="263" x2="250" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="254" y1="263" x2="254" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="258" y1="265" x2="259" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <line x1="262" y1="267" x2="264" y2="279" stroke="#1a1a1a" stroke-width="2.5"/>
-    <ellipse cx="240" cy="267" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="245" cy="265" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="250" cy="263" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="255" cy="263" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="260" cy="265" rx="4" ry="7" fill="#1a1a1a"/>
-    <ellipse cx="265" cy="267" rx="4" ry="7" fill="#1a1a1a"/>
-    <path d="M 244,299 Q 240,313 238,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 248,299 Q 246,313 245,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 252,299 Q 252,313 252,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 256,299 Q 258,313 259,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-    <path d="M 260,299 Q 264,313 266,323" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
-  </g>
-
-  <!-- Shield border (over everything inside) -->
-  <path d="M 25,25 L 315,25 L 315,230 Q 315,360 170,450 Q 25,360 25,230 Z"
-        fill="none" stroke="#1a1a1a" stroke-width="4"/>
-
-  <!-- ── MOTTO SCROLL ── -->
-  <!-- Scroll ribbon -->
-  <path d="M 30,462 Q 80,452 170,456 Q 260,452 310,462 Q 280,475 170,472 Q 60,475 30,462 Z"
-        fill="#f2f2f2" stroke="#1a1a1a" stroke-width="1.5"/>
-  <!-- Left curl -->
-  <path d="M 30,462 Q 18,460 22,470 Q 26,478 38,476" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="1.5"/>
-  <!-- Right curl -->
-  <path d="M 310,462 Q 322,460 318,470 Q 314,478 302,476" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="1.5"/>
-  <!-- Motto text -->
-  <text x="170" y="470" text-anchor="middle" font-family="Palatino Linotype, Palatino, serif" font-size="13"
-        font-style="italic" fill="#1a1a1a" letter-spacing="1">Ut cunque placuerit Deo</text>
 </svg>
