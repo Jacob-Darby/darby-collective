@@ -408,7 +408,7 @@ nav{
 // PHOTOS DATA
 // ─────────────────────────────────────────────────────────────────
 const PHOTOS = [
-  { src:'images/family-photos/page-01.jpg', title:'Page 1: Edward & John Darby', caption:'Family note: "Given the marriage of Edward & Susannah Hooke in 1659 & James birth in 1702... James is the grandchild", confirms John² as the missing generation. Edward¹ Derby, Bisley Surrey → New England c.1648-1650.' },
+  { src:'images/family-photos/page-01.jpg', title:'Page 1: Edward & John Darby', caption:'Family note: "Given the marriage of Edward & Susannah Hooke in 1659 & James birth in 1702... James is the grandchild", confirms John² as the missing generation. Edward¹ Derby, Bisley Surrey  to  New England c.1648-1650.' },
   { src:'images/family-photos/page-02.jpg', title:'Page 2: James & Eleazor Darby', caption:'James³ Darby (b. Apr 30, 1702, Dunstable MA) + Eleanor Shepard. Eleazor⁴ Darby (b. Jul 6, 1731, Canterbury CT; d. Jan 31, 1813, Homer NY). Wife: Anna Doubleday, predeceased move to New York.' },
   { src:'images/family-photos/page-03.jpg', title:'Page 3: Joseph Darby + Two Wives', caption:'Joseph⁵ Darby (b. 1774; d. March 22, 1825, Homer NY). Married (1) Anna Grow 1796 Hampton CT; (2) Asenath Tyler Sept 20, 1807 in Cortland. Religion: Homer 1st Baptist Church.' },
   { src:'images/family-photos/page-04.jpg', title:'Page 4: Lyman Darby Family', caption:'Lyman⁶ Darby (b. 1800; d. Nov 09, 1878 Cortland NY). Married Cynthia Salisbury Dec 12, 1823 Cortland NY. 9 children. Baptism: 1820 by Rev Alfred Bennett at Homer Baptist Church. Shares headstone with William H. Darby at Homer Old Cemetery.' },
@@ -534,7 +534,7 @@ const PEOPLE = {
   "christine_dwyer":{ id:"christine_dwyer",gen:11,type:"spouse",name:"Christine Ann Dwyer",born:"c.1960",note:"Married Kenneth Duane Darby Jul 23, 1998 Jamaica. Her children: Conrad John Marsh (b. Mar 17, 1982) and Casey David Marsh (b. May 25, 1985), stepchildren." },
   "jessica_darby":{ id:"jessica_darby",gen:11,type:"collateral",name:"Jessica Lyn Darby",born:"Aug 23, 1981",note:"Daughter of Kenneth + Cynthia Steinbron. Jacob's sister." },
   "kala_darby":{ id:"kala_darby",gen:11,type:"collateral",name:"Kala Elizabeth Darby",born:"Oct 16, 1984",note:"Daughter of Kenneth + Cynthia Steinbron. Jacob's sister." },
-  "jacob12":{ id:"jacob12",gen:12,type:"direct",name:"Jacob Richard¹² Darby",born:"Sep 12, 1987",birthplace:"Waterloo, IA",deathplace:"West Branch, Johnson Co., IA",note:"12th-generation American Darby. Founder and Fractional CPO. Vela Solved LLC, Caxion AI, ApexTruth Health LLC. Leads Iron Sharpens Iron (ISI) nonprofit, West Branch Iowa. The family's journey: Bisley, Surrey, England (c.1650) → Weymouth MA → Dunstable MA → Canterbury CT → Homer NY → Clarksville IA → Nashua IA → Waterloo IA → West Branch IA." },
+  "jacob12":{ id:"jacob12",gen:12,type:"direct",name:"Jacob Richard¹² Darby",born:"Sep 12, 1987",birthplace:"Waterloo, IA",deathplace:"West Branch, Johnson Co., IA",note:"12th-generation American Darby. Founder and Fractional CPO. Vela Solved LLC, Caxion AI, ApexTruth Health LLC. Leads Iron Sharpens Iron (ISI) nonprofit, West Branch Iowa. The family's journey: Bisley, Surrey, England (c.1650)  to  Weymouth MA  to  Dunstable MA  to  Canterbury CT  to  Homer NY  to  Clarksville IA  to  Nashua IA  to  Waterloo IA  to  West Branch IA." },
   "sarah_cobb":{ id:"sarah_cobb",gen:1,type:"collateral",name:"Sarah (Derby) Cobb",born:"c.1662",note:"Daughter of Edward¹ Derby." },
   "jonathan_darby":{ id:"jonathan_darby",gen:1,type:"collateral",name:"Jonathan Darby",born:"c.1665",note:"Son of Edward¹ Derby." },
   "jane_blanchard":{ id:"jane_blanchard",gen:1,type:"collateral",name:"Jane (Derby) Blanchard",born:"c.1668",note:"Daughter of Edward¹ Derby. Married a Blanchard, same family John² later married into." },
@@ -628,7 +628,7 @@ function makeCard(p){
   d.innerHTML=`
     <div class="pname">${p.name}</div>
     ${dates?`<div class="pdates">${dates}</div>`:''}
-    ${p.birthplace?`<div class="pplace">${p.birthplace}${p.deathplace?' → '+p.deathplace:''}</div>`:''}
+    ${p.birthplace?`<div class="pplace">${p.birthplace}${p.deathplace?'  to  '+p.deathplace:''}</div>`:''}
     ${p.note?`<div class="pnote">${p.note.substring(0,110)}${p.note.length>110?'…':''}</div>`:''}
   `;
   d.onclick=()=>openDetail(p.id);
